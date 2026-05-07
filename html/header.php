@@ -5,10 +5,10 @@
         <button type="submit" id="search-btn" hidden>Search</button>
     </form>
     <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+        <ul id="main-buttons">
+            <li><a href="#" class="yellow">Home</a></li>
+            <li><a href="#" class="yellow">About</a></li>
+            <li><a href="#" class="yellow">Contact</a></li>
         </ul>
     </nav>
 </header>

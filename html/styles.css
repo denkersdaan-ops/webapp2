@@ -30,3 +30,26 @@ header {
     height: 100px;
     border-radius: 50%;
 }
+
+#search-input {
+    padding: 10px;
+    border-radius: 100px;
+    border: none;
+    height: 30px;
+    width: 80%;
+}
+
+#main-buttons{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    list-style: none;
+}
+
+#main-buttons li a {
+    padding: 10px 20px;
+    border-radius: 100px;
+    text-decoration: none;
+    color : black;
+}
