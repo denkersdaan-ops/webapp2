@@ -1,7 +1,9 @@
 <header class="blue">
     <img src="images/logo.jpg" alt="Logo" class="main-logo">
+    // search form 
     <form action="" method="get" class="search-form">
         <input type="text" name="search" id="search-input" class="yellow" placeholder="Search...">
+        // hidden submit button for accessibility and to allow form submission with Enter key
         <button type="submit" id="search-btn" hidden>Search</button>
     </form>
     <nav>
@@ -13,6 +15,7 @@
     </nav>
 </header>
 
+// no submit button needed only hit enter to submit the form
 <script>
     // Get the input field
 var input = document.getElementById("search-input");
