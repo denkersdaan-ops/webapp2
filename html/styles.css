@@ -1,24 +1,31 @@
-.blue{
+/* everything */
+.blue {
     background-color: #9CCFE3;
     color: white;
 }
 
-*{
+.yellow {
+    background-color: #FEF9C6;
+    color: black;
+}
+
+* {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
 }
 
-header{
+
+/* header */
+header {
     padding: 10px;
     text-align: center;
-
     display: grid;
-
     grid-template-columns: 1fr 4fr 3fr;
+    align-items: center;
 }
 
-.logo{
+.main-logo {
     width: 100px;
     height: 100px;
     border-radius: 50%;
