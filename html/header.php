@@ -1,21 +1,21 @@
 <header class="blue">
-    <img src="images/logo.jpg" alt="Logo" class="main-logo">
-    // search form 
+    <a href="index.php"><img src="images/logo.jpg" alt="Logo" class="main-logo"></a> 
+    <!-- search form -->
     <form action="" method="get" class="search-form">
         <input type="text" name="search" id="search-input" class="yellow" placeholder="Search...">
-        // hidden submit button for accessibility and to allow form submission with Enter key
+        <!-- hidden submit button for accessibility and to allow form submission with Enter key -->
         <button type="submit" id="search-btn" hidden>Search</button>
     </form>
     <nav>
         <ul id="main-buttons">
-            <li><a href="#" class="yellow">Home</a></li>
+            <li><a href="search.php" class="yellow">Search</a></li>
             <li><a href="#" class="yellow">About</a></li>
             <li><a href="#" class="yellow">Contact</a></li>
         </ul>
     </nav>
 </header>
 
-// no submit button needed only hit enter to submit the form
+<!-- no submit button needed only hit enter to submit the form -->
 <script>
     // Get the input field
 var input = document.getElementById("search-input");
