@@ -1,3 +1,7 @@
+<?php
+include_once 'dbConection.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,9 +64,18 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const slides = [
-                { src: 'images/scroll-images/Afbeelding3.png', alt: 'Image 3' },
-                { src: 'images/scroll-images/Afbeelding4.png', alt: 'Image 4' },
-                { src: 'images/scroll-images/Afbeelding5.png', alt: 'Image 5' },
+                <?php
+                $stmt = $pdo->query("SELECT * FROM trip ORDER BY bought DESC LIMIT 10");
+                $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if (!$stmt) {
+                    $error = $pdo->errorInfo();
+                    die("Query error: " . $error[2]);
+                }
+                
+                foreach ($trips as $trip) {
+                    echo "{ src: 'data:image/png;base64," . base64_encode($trip['frontImage']) . "', alt: '" . $trip['title'] . "' },";
+                }
+                ?>
             ];
 
             let currentIndex = 0;
