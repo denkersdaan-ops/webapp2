@@ -26,7 +26,6 @@ include_once 'dbConection.php';
 
 
                 <section class="carousel-section">
-                    <h2>Image Carousel</h2>
                     <div class="carousel">
                         <div class="carousel-layout">
                             <div class="slide position-left2" data-pos="left2">
@@ -64,6 +63,7 @@ include_once 'dbConection.php';
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const slides = [
+                // PHP code to fetch images from the database and generate the slides array 
                 <?php
                 $stmt = $pdo->query("SELECT * FROM trip ORDER BY bought DESC LIMIT 10");
                 $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -77,6 +77,8 @@ include_once 'dbConection.php';
                 }
                 ?>
             ];
+
+             // index and animations
 
             let currentIndex = 0;
             let autoRotate = null;
