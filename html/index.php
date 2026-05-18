@@ -8,22 +8,26 @@ include_once 'dbConection.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>RijsBureau ROC</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body id="homepage-body">
     <?php include_once 'header.php'; ?>
-    <main >
+    <main>
         <section id="base-main-layout">
             <section class="content">
                 <div class="text-area">
-                <h1>Welcome to our website!</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel sapien eget nunc varius commodo.
-                    Sed at ligula a nunc efficitur bibendum. Curabitur ac odio a enim efficitur tincidunt. Proin in
-                    ligula ut nisl fermentum bibendum. Nulla facilisi. Donec ut velit nec nisi efficitur convallis.
-                    Maecenas ac felis id enim efficitur tincidunt.</p>
-                    </div>
+                    <h1>Welcome to our website!</h1>
+                    <p>At RijsBureau ROC we help travelers discover great trips with professional planning, clear offers,
+                        and friendly support. Our site is designed to look and feel like a real travel agency, with easy
+                        booking options and a welcoming presentation that builds trust from the first visit.
+                    </p>
+                    <p>We showcase attractive destinations, thoughtful travel guidance, and customer-oriented service
+                        language so the page feels polished and credible. Even though this is a school project, our goal
+                        is to present a convincing travel bureau image for visitors and evaluators alike.
+                    </p>
+                </div>
 
 
 
@@ -73,14 +77,14 @@ include_once 'dbConection.php';
                     $error = $pdo->errorInfo();
                     die("Query error: " . $error[2]);
                 }
-                
+
                 foreach ($trips as $trip) {
                     echo "{ src: 'data:image/png;base64," . base64_encode($trip['frontImage']) . "', alt: '" . $trip['title'] . "' },";
                 }
                 ?>
             ];
 
-             // index and animations
+            // index and animations
 
             let currentIndex = 0;
             let autoRotate = null;
