@@ -43,7 +43,9 @@
         </section>
     </main>
     <footer class="blue">
-        <p>&copy; 2024 Your Company. All rights reserved.</p>
+        <a href="mailto:Who_Asked_Box_54321@gmail.com">Contact Us</a>
+        <a href="tel:31123456789">31 123456789</a>
+        <a href="#">Privacy Policy</a>
     </footer>
 </body>
 
