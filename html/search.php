@@ -13,7 +13,7 @@
     ?>
     <main>
         <section id="search-main-layout">
-            <h1>Search Results of : <?= htmlspecialchars($_GET['search']) ?></h1>
+            <h1>Search Results of : <?=isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?></h1>
             
             <?php
                 $searchTerm = isset($_GET['search']) ? trim($_GET['search']) : '';
