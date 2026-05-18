@@ -14,14 +14,16 @@ include_once 'dbConection.php';
 
 <body id="homepage-body">
     <?php include_once 'header.php'; ?>
-    <main id="homepage-main">
-        <section id="homepage-main-layout">
+    <main >
+        <section id="base-main-layout">
             <section class="content">
+                <div class="text-area">
                 <h1>Welcome to our website!</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel sapien eget nunc varius commodo.
                     Sed at ligula a nunc efficitur bibendum. Curabitur ac odio a enim efficitur tincidunt. Proin in
                     ligula ut nisl fermentum bibendum. Nulla facilisi. Donec ut velit nec nisi efficitur convallis.
                     Maecenas ac felis id enim efficitur tincidunt.</p>
+                    </div>
 
 
 

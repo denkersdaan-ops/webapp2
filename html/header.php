@@ -9,7 +9,7 @@
     <nav>
         <ul id="main-buttons">
             <li><a href="search.php" class="yellow">Search</a></li>
-            <li><a href="#" class="yellow">About</a></li>
+            <li><a href="aboutUs.php" class="yellow">About</a></li>
             <li><a href="#" class="yellow">Contact</a></li>
         </ul>
     </nav>
