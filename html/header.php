@@ -1,7 +1,7 @@
 <header class="blue">
     <a href="index.php"><img src="images/logo.jpg" alt="Logo" class="main-logo"></a> 
     <!-- search form -->
-    <form action="" method="get" class="search-form">
+    <form action="search.php" method="get" class="search-form">
         <input type="text" name="search" id="search-input" class="yellow" placeholder="Search...">
         <!-- hidden submit button for accessibility and to allow form submission with Enter key -->
         <button type="submit" id="search-btn" hidden>Search</button>
