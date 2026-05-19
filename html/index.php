@@ -39,19 +39,19 @@ include_once 'dbConection.php';
                     <div class="carousel">
                         <div class="carousel-layout">
                             <div class="slide position-left2" data-pos="left2">
-                                <img src="images/scroll-images/Afbeelding4.png" alt="Ghost left far">
+                                <a href="#"><img src="images/scroll-images/Afbeelding4.png" alt="Ghost left far"></a>
                             </div>
                             <div class="slide position-left" data-pos="left">
-                                <img src="images/scroll-images/Afbeelding5.png" alt="Ghost left">
+                                <a href="#"><img src="images/scroll-images/Afbeelding5.png" alt="Ghost left"></a>
                             </div>
                             <div class="slide position-center" data-pos="center">
-                                <img src="images/scroll-images/Afbeelding3.png" alt="Main image">
+                                <a href="#"><img src="images/scroll-images/Afbeelding3.png" alt="Main image"></a>
                             </div>
                             <div class="slide position-right" data-pos="right">
-                                <img src="images/scroll-images/Afbeelding4.png" alt="Ghost right">
+                                <a href="#"><img src="images/scroll-images/Afbeelding4.png" alt="Ghost right"></a>
                             </div>
                             <div class="slide position-right2" data-pos="right2">
-                                <img src="images/scroll-images/Afbeelding5.png" alt="Ghost right far">
+                                <a href="#"><img src="images/scroll-images/Afbeelding5.png" alt="Ghost right far"></a>
                             </div>
                         </div>
                         <button class="prev-btn">&lt;</button>
@@ -83,7 +83,7 @@ include_once 'dbConection.php';
                 }
 
                 foreach ($trips as $trip) {
-                    echo "{ src: 'data:image/png;base64," . base64_encode($trip['frontImage']) . "', alt: '" . $trip['title'] . "' },";
+                    echo "{ id: " . (int)$trip['id'] . ", src: 'data:image/png;base64," . base64_encode($trip['frontImage']) . "', alt: '" . addslashes($trip['title']) . "' },";
                 }
                 ?>
             ];
@@ -111,7 +111,7 @@ include_once 'dbConection.php';
                 'position-right',
                 'position-right2',
             ];
-
+            // smoothly wrap index around the slides array
             function wrapIndex(index) {
                 const len = slides.length;
                 return ((index % len) + len) % len;
@@ -123,7 +123,7 @@ include_once 'dbConection.php';
                     wrapper.classList.add(positionClasses[idx]);
                 });
             }
-
+            // Update carousel images and links based on current index
             function updateCarousel(index) {
                 currentIndex = wrapIndex(index);
                 assignPositionClasses();
@@ -139,11 +139,15 @@ include_once 'dbConection.php';
                 wrappers.forEach((wrapper, idx) => {
                     const slide = slides[indexMap[idx]];
                     const img = wrapper.querySelector('img');
+                    const link = wrapper.querySelector('a');
                     img.src = slide.src;
                     img.alt = slide.alt;
+                    if (link) {
+                        link.href = `trip.php?trip=${slide.id}`;
+                    }
                 });
             }
-
+            // Navigation functions
             function nextSlide() {
                 wrappers.push(wrappers.shift());
                 updateCarousel(currentIndex + 1);
