@@ -101,10 +101,6 @@ main {
     /*it makes it so it takes up the remaining space */
 }
 
-.content {
-    max-height: calc(100vh - 110px);
-}
-
 #base-main-layout {
     display: grid;
     grid-template-columns: 3fr 1fr;
@@ -145,6 +141,7 @@ footer a {
     text-decoration: none;
     color: black;
 }
+
 #home-page-aside {
     padding: 20px;
     height: 100%;
@@ -163,6 +160,7 @@ footer a {
 /* Carousel */
 .carousel-section {
     margin: 0;
+    height: auto;
 }
 
 .carousel {
