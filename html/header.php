@@ -12,6 +12,7 @@
             <li><a href="aboutUs.php" class="yellow">About</a></li>
             <?php
             if (isset($_SESSION['user_id'])) {
+                echo '<li><a id="logout-link" href="auth/logout.php" class="yellow">Logout</a></li>';
             } else {
                 echo '<li><a id="login-link" href="#" class="yellow">Login</a></li>';
             }
