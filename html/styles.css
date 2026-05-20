@@ -374,3 +374,49 @@ footer a {
     gap: 15px;
 }
 
+#register-modal {
+    z-index: 1000;
+    display: flex;
+    position: absolute;
+    
+    flex-direction: column;
+    
+    align-items: center;
+    justify-content: center;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#register-modal.hidden {
+    display: none;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-register-link,
+.register-login-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.login-register-link a,
+.register-login-link a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-register-link a:hover,
+.register-login-link a:hover {
+    text-decoration: underline;
+    color: #0052a3;
+}
+
