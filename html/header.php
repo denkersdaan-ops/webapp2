@@ -1,3 +1,7 @@
+<?php
+    $_SESSION['redirect_to'] = $_SERVER['REQUEST_URI'];
+?>
+
 <header class="blue">
     <a href="index.php"><img src="images/logo.jpg" alt="Logo" class="main-logo"></a>
     <!-- search form -->
@@ -12,6 +16,7 @@
             <li><a href="aboutUs.php" class="yellow">About</a></li>
             <?php
             if (isset($_SESSION['user_id'])) {
+                echo '<li><a href="profile.php" class="yellow">Profile</a></li>';
                 echo '<li><a id="logout-link" href="auth/logout.php" class="yellow">Logout</a></li>';
             } else {
                 echo '<li><a id="login-link" href="#" class="yellow">Login</a></li>';
