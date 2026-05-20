@@ -30,10 +30,10 @@ if (isset($_POST['email'], $_POST['password'], $_POST['confirm_password'], $_POS
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->bindParam(':password', $password, PDO::PARAM_STR);
     $stmt->execute();
-    
+
 } else {
     $_SESSION['error'] = "Please fill in all fields.";
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header('Location: ' . $_SERVER['HTTP_REFERER'] ?? '../index.php');
     exit;
 }
 ?>

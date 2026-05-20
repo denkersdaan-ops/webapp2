@@ -8,6 +8,6 @@ $stmt->bindParam(':password', $_POST['password'], PDO::PARAM_STR);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-header('Location: ' . $_SERVER['HTTP_REFERER']);
+header('Location: ' . $_SERVER['HTTP_REFERER'] ?? '../index.php');
 $_SESSION['user_id'] = $user['id'];
 exit;
