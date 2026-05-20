@@ -253,7 +253,8 @@ footer a {
     transition: ease 0.3s;
 }
 
-.search-result-item img {
+.search-result-item img,
+.booking-item img { 
     width: 300px;
     height: 200px;
     object-fit: cover;
@@ -420,3 +421,11 @@ footer a {
     color: #0052a3;
 }
 
+.booking-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+}
