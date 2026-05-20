@@ -1,4 +1,5 @@
 <?php
+ session_start();
 include_once 'dbConection.php';
 ?>
 
@@ -32,8 +33,6 @@ include_once 'dbConection.php';
                         is to present a convincing travel bureau image for visitors and evaluators alike.
                     </p>
                 </div>
-
-
 
                 <section class="carousel-section">
                     <div class="carousel">

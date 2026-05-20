@@ -1,4 +1,7 @@
 <?php
+    session_start();
+
+
     include_once 'dbConection.php';
 
     if (!isset($_GET['trip']) || !is_numeric($_GET['trip'])) {
