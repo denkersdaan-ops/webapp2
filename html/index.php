@@ -1,6 +1,6 @@
 <?php
- session_start();
- include_once 'dbConection.php';
+session_start();
+include_once 'dbConection.php';
 ?>
 
 <!DOCTYPE html>
@@ -13,18 +13,22 @@
     <link rel="stylesheet" href="styles.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bitcount:wght@100..900&family=DynaPuff:wght@400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bitcount:wght@100..900&family=DynaPuff:wght@400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body id="homepage-body">
     <?php include_once 'header.php'; ?>
+
     <main>
         <section id="base-main-layout">
             <section class="content">
                 <div class="text-area">
                     <h1>Welcome to our website!</h1>
-                    <p>At RijsBureau ROC we help travelers discover great trips with professional planning, clear offers,
+                    <p>At RijsBureau ROC we help travelers discover great trips with professional planning, clear
+                        offers,
                         and friendly support. Our site is designed to look and feel like a real travel agency, with easy
                         booking options and a welcoming presentation that builds trust from the first visit.
                     </p>
@@ -82,7 +86,7 @@
                 }
 
                 foreach ($trips as $trip) {
-                    echo "{ id: " . (int)$trip['id'] . ", src: 'data:image/png;base64," . base64_encode($trip['frontImage']) . "', alt: '" . addslashes($trip['title']) . "' },";
+                    echo "{ id: " . (int) $trip['id'] . ", src: 'data:image/png;base64," . base64_encode($trip['frontImage']) . "', alt: '" . addslashes($trip['title']) . "' },";
                 }
                 ?>
             ];
