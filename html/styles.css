@@ -20,6 +20,16 @@ body {
     padding: 0;
 }
 
+.trip-image {
+    display: flex;
+    justify-content: center;
+}
+
+.trip-image img {
+    width: 850px;
+    height: 500px;
+    object-fit: cover;
+}
 
 /* header */
 header {
@@ -340,7 +350,8 @@ footer a {
 .modal {
     z-index: 1000;
     position: fixed;
-    inset: 0; /* top:0; right:0; bottom:0; left:0; */
+    inset: 0;
+    /* top:0; right:0; bottom:0; left:0; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -364,7 +375,7 @@ footer a {
     box-sizing: border-box;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
     position: relative;
     z-index: 1002;
 }
@@ -419,12 +430,17 @@ footer a {
 }
 
 @media (max-width: 420px) {
-    #password-reset-modal .modal-content { padding: 18px; }
-    #password-reset-modal .modal-content .actions { flex-direction: column; }
+    #password-reset-modal .modal-content {
+        padding: 18px;
+    }
+
+    #password-reset-modal .modal-content .actions {
+        flex-direction: column;
+    }
 }
 
 
-#login-modal { }
+#login-modal {}
 
 .forgot-password-form,
 .login-form {
@@ -478,8 +494,7 @@ footer a {
     font-weight: bold;
 }
 
-.forgot-password-link a:hover
-.login-register-link a:hover,
+.forgot-password-link a:hover .login-register-link a:hover,
 .register-login-link a:hover {
     text-decoration: underline;
     color: #0052a3;

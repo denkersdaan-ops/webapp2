@@ -34,6 +34,26 @@
 </head>
 <body>
     <?php include_once 'header.php'; ?>
+<div><br></div>
 
+    <div class=trip-image> 
+    <img src="data:image/png;base64, <?php echo base64_encode($trip["frontImage"]) ?>" alt="frontImage">
+</div>
+
+<div><br></div>
+
+<div class=blue> 
+<br> <br> <br><?php echo($trip["description"]) ?> <br> <br> 
+<br> <?php echo($trip["location"]) ?> <br> <br> <br> <?php echo($trip["price"]) ?> <br>
+ <br> <br> 
+</div>
+
+<div><br></div>
+
+<div class=blue> 
+<br> <br> <br> <br> <br> <br> <br> <br> 
+</div>
+
+<div><br></div>
 </body>
 </html>
