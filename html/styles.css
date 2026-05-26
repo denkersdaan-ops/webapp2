@@ -14,7 +14,7 @@
 }
 
 body {
-    font-family: "DynaPuff",Arial, Helvetica, sans-serif;
+    font-family: "DynaPuff", Arial, Helvetica, sans-serif;
     font-weight: 400;
     margin: 0;
     padding: 0;
@@ -112,7 +112,7 @@ main {
     display: grid;
     grid-template-columns: 3fr 1fr;
     min-height: calc(100vh - 270px);
-     /* it makes it so the main layout takes up the full height of the viewport minus the header */
+    /* it makes it so the main layout takes up the full height of the viewport minus the header */
 }
 
 #about-us-image img {
@@ -120,8 +120,8 @@ main {
     height: calc(100% - 40px);
     object-fit: fill;
     overflow: hidden;
-    width:25vw;
-     /* it makes the image take up the full height of the aside minus the padding, and maintains the aspect ratio */
+    width: 25vw;
+    /* it makes the image take up the full height of the aside minus the padding, and maintains the aspect ratio */
 }
 
 footer {
@@ -253,7 +253,8 @@ footer a {
     transition: ease 0.3s;
 }
 
-.search-result-item img {
+.search-result-item img,
+.booking-item img {
     width: 300px;
     height: 200px;
     object-fit: cover;
@@ -335,52 +336,111 @@ footer a {
     pointer-events: none;
 }
 
-#login-modal {
+/* Generic modal styles */
+.modal {
     z-index: 1000;
+    position: fixed;
+    inset: 0; /* top:0; right:0; bottom:0; left:0; */
     display: flex;
-    position: absolute;
-    
-    flex-direction: column;
-    
     align-items: center;
     justify-content: center;
+    padding: 1rem;
+}
 
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.modal.hidden {
+    display: none;
+}
+
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
 }
 
 .modal-content {
     background-color: #fff;
-    width: clamp(300px, 90vw, 400px);
-    height: min-content;
-
-    display: block;
-
+    width: clamp(300px, 90vw, 480px);
+    max-width: 95%;
+    box-sizing: border-box;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
     position: relative;
+    z-index: 1002;
 }
 
-#login-modal.hidden {
-    display: none;
+.modal-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
 }
 
+.modal form input[type="email"],
+.modal form input[type="password"],
+.modal form input[type="text"] {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modal form button.yellow {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Password-reset modal specific styles */
+#password-reset-modal .modal-content {
+    width: clamp(340px, 86vw, 560px);
+    padding: 24px;
+    border-radius: 12px;
+    max-width: 95%;
+}
+
+#password-reset-modal .modal-content .hint {
+    display: block;
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+#password-reset-modal .modal-content .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+@media (max-width: 420px) {
+    #password-reset-modal .modal-content { padding: 18px; }
+    #password-reset-modal .modal-content .actions { flex-direction: column; }
+}
+
+
+#login-modal { }
+
+.forgot-password-form,
 .login-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-#register-modal {
+#register-modal,
+#forgot-password-code-modal {
     z-index: 1000;
     display: flex;
     position: absolute;
-    
+
     flex-direction: column;
-    
+
     align-items: center;
     justify-content: center;
 
@@ -390,16 +450,19 @@ footer a {
     bottom: 0;
 }
 
-#register-modal.hidden {
+#register-modal.hidden,
+#forgot-password-code-modal.hidden {
     display: none;
 }
 
+.forgot-password-from,
 .register-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+.forgot-password-link,
 .login-register-link,
 .register-login-link {
     text-align: center;
@@ -407,6 +470,7 @@ footer a {
     font-size: 14px;
 }
 
+.forgot-password-link a,
 .login-register-link a,
 .register-login-link a {
     color: #0066cc;
@@ -414,9 +478,18 @@ footer a {
     font-weight: bold;
 }
 
+.forgot-password-link a:hover
 .login-register-link a:hover,
 .register-login-link a:hover {
     text-decoration: underline;
     color: #0052a3;
 }
 
+.booking-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+}

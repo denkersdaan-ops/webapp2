@@ -3,6 +3,6 @@ session_start();
 session_unset();
 session_destroy();
 
-header('Location: ' . $_SERVER['HTTP_REFERER']);
+header('Location: ' . (isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : '../index.php'));
 
 exit;
