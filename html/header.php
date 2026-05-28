@@ -3,7 +3,7 @@ $_SESSION['redirect_to'] = $_SERVER['REQUEST_URI'];
 ?>
 
 <header class="blue">
-    <a href="index.php"><img src="images/logo.jpg" alt="Logo" class="main-logo"></a>
+    <a href="index.php"><img src="images/logo.png" alt="Logo" class="main-logo"></a>
     <!-- search form -->
     <form action="search.php" method="get" class="search-form">
         <input type="text" name="search" id="search-input" class="yellow" placeholder="Search...">
