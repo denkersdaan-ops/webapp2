@@ -43,7 +43,7 @@
 <div><br></div>
 
 <div class=blue> 
-<br> <br> <br><?php echo($trip["description"]) ?> <br> <br> 
+<br><?php echo($trip["description"]) ?> <br> <br> 
 <br> <?php echo($trip["location"]) ?> <br> <br> <br> <?php echo($trip["price"]) ?> <br>
  <br> <br> 
 </div>
