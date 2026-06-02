@@ -12,7 +12,11 @@ $_SESSION['redirect_to'] = $_SERVER['REQUEST_URI'];
     </form>
     <nav>
         <ul id="main-buttons">
-            <li><a href="search.php" class="yellow">Search</a></li>
+            <?php
+                if (isset($_SESSION['user_id']) && $_SESSION['user_id'] === 1) {
+                    echo '<li><a href="admin.php" class="yellow">Admin</a></li>';
+                }
+            ?>
             <li><a href="aboutUs.php" class="yellow">About</a></li>
             <?php
             if (isset($_SESSION['user_id'])) {
