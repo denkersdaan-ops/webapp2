@@ -48,7 +48,18 @@
  <br> <br> 
 </div>
 
-<div><br></div>
+<div><br>
+<?php if(isset($_SESSION['user_id'])) {?>
+<form action="add-review" method="POST">
+    <input type="hidden" name="trip_id" value="<?php echo $tripId ?> required">
+    <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '' ?>" required>
+    <input type="text" name="review" placeholder="write review" required>
+    <input type="submit" value="add Review">
+</form>
+<?php } else{?>
+    <p>need to be logged in to write a review</p>
+<?php } ?>
+</div>
 
 <div class=blue> 
 <br> <br> <br> <br> <br> <br> <br> <br> 
