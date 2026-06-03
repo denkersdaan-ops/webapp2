@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] !== 1) {
+if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== 1) {
     header('Location: ' . (isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : 'index.php'));
     exit();
 }

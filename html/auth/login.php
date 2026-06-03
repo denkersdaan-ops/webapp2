@@ -10,4 +10,9 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 header('Location: ' .(isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : '../index.php'));
 $_SESSION['user_id'] = $user['id'];
+if ($user['admin'] == 1) {
+    $_SESSION['is_admin'] = 1;
+} else {
+    $_SESSION['is_admin'] = 0;
+}
 exit;

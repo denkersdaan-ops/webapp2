@@ -13,7 +13,7 @@ $_SESSION['redirect_to'] = $_SERVER['REQUEST_URI'];
     <nav>
         <ul id="main-buttons">
             <?php
-                if (isset($_SESSION['user_id']) && $_SESSION['user_id'] === 1) {
+                if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) {
                     echo '<li><a href="admin.php" class="yellow">Admin</a></li>';
                 }
             ?>

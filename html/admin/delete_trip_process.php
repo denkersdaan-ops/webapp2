@@ -2,7 +2,7 @@
 session_start();
 include_once '../dbConection.php';
 
-if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] !== 1) {
+if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== 1) {
     header('Location: ../index.php'); // only index so it won't make a loop of admin sending u to admin.
     exit;
 }
