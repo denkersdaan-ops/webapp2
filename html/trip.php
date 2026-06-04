@@ -14,6 +14,10 @@
     $stmt->execute(['id' => $tripId]);
     $trip = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    $stmt = $pdo->prepare("SELECT * FROM review WHERE trip_id = :id");
+    $stmt->execute(['id' => $tripId]);
+    $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     if (!$trip) {
         header("Location: search.php?error=trip_not_found");
         exit();
@@ -50,20 +54,37 @@
 
 <div><br>
 <?php if(isset($_SESSION['user_id'])) {?>
-<form action="add-review" method="POST">
-    <input type="hidden" name="trip_id" value="<?php echo $tripId ?> required">
-    <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '' ?>" required>
+<form action="add-review.php" class="rate" method="POST">
+    <input type="hidden" name="trip_id" value="<?php echo $tripId ?>">
+    <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '' ?>">
     <input type="text" name="review" placeholder="write review" required>
+    <input type="radio" id="star5" name="rate" value="5" />
+        <label for="star5" title="text">5 stars</label>
+        <input type="radio" id="star4" name="rate" value="4" />
+        <label for="star4" title="text">4 stars</label>
+        <input type="radio" id="star3" name="rate" value="3" />
+        <label for="star3" title="text">3 stars</label>
+        <input type="radio" id="star2" name="rate" value="2" />
+        <label for="star2" title="text">2 stars</label>
+        <input type="radio" id="star1" name="rate" value="1" />
+        <label for="star1" title="text">1 star</label>
     <input type="submit" value="add Review">
 </form>
 <?php } else{?>
     <p>need to be logged in to write a review</p>
 <?php } ?>
 </div>
-
+<?php 
+foreach ($reviews as $review){ 
+?>
 <div class=blue> 
-<br> <br> <br> <br> <br> <br> <br> <br> 
+<br> <br> <br> <br> <?php echo($review["comment"]) ?><br> <br> <br> <br> 
 </div>
+<br>
+<?php 
+}
+?>
+
 
 <div><br></div>
 </body>
