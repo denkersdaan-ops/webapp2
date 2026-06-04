@@ -527,3 +527,35 @@ footer a {
     width: calc(100% - 40px);
     text-align: center;
 }
+
+#trip-edit-info,
+#trip-edit-images {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    border-radius: 20px;
+}
+
+#trip-edit-images .additional-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 4px;
+    border-radius: 20px;
+    overflow-y: auto;
+    max-height: 600px;
+    overflow-x: hidden;
+}
+
+.image-card{
+    display: flex;
+    flex-direction: column;
+}
+
+.image-card img {
+    border-radius: 20px;
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+}

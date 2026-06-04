@@ -36,53 +36,74 @@ if (isset($_GET['id'])) {
 <body>
     <?php include_once 'header.php'; ?>
     <main>
-        <h1>Edit trip</h1>
-        <h2>Edit trip information</h2>  
-        <form action="admin/update_trip.php" method="POST">
-            <input type="hidden" name="trip_id" value="<?= $trip['id'] ?>">
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" value="<?= htmlspecialchars($trip['title']) ?>" required>
-            <label for="description">Description:</label>
-            <textarea id="description" name="description"
-                required><?= htmlspecialchars($trip['description']) ?></textarea>
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" value="<?= htmlspecialchars($trip['location']) ?>"
-                required>
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="price" value="<?= htmlspecialchars($trip['price']) ?>" step="0.01"
-                required>
-            <label for="startdate">Start Date:</label>
-            <input type="date" id="startdate" name="startdate" value="<?= htmlspecialchars($trip['period_start']) ?>"
-                required>
-            <label for="enddate">End Date:</label>
-            <input type="date" id="enddate" name="enddate" value="<?= htmlspecialchars($trip['period_end']) ?>" required>
-            <button type="submit">Update Trip</button>
-        </form>
+        <section class="margin">
+            <h1>Edit trip</h1>
+            <section id="trip-edit-info" class="blue margin">
+                <h2>Edit trip information</h2>
+                <form action="admin/update_trip.php" method="POST">
+                    <input type="hidden" name="trip_id" value="<?= $trip['id'] ?>">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" value="<?= htmlspecialchars($trip['title']) ?>" required>
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description"
+                        required><?= htmlspecialchars($trip['description']) ?></textarea>
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" value="<?= htmlspecialchars($trip['location']) ?>"
+                        required>
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" value="<?= htmlspecialchars($trip['price']) ?>"
+                        step="0.01" required>
+                    <label for="startdate">Start Date:</label>
+                    <input type="date" id="startdate" name="startdate"
+                        value="<?= htmlspecialchars($trip['period_start']) ?>" required>
+                    <label for="enddate">End Date:</label>
+                    <input type="date" id="enddate" name="enddate" value="<?= htmlspecialchars($trip['period_end']) ?>"
+                        required>
+                    <button type="submit">Update Trip</button>
+                </form>
+            </section>
+            <section id="trip-edit-images" class="blue margin">
+                <h2>Edit images</h2>
 
-        <h2>Edit images</h2>
+                <form action="admin/update_images.php" method="POST" enctype="multipart/form-data">
+                    <div>
+                        <input type="hidden" name="trip_id" value="<?= $trip['id'] ?>">
+                        <label>Current Front Image:</label><br>
+                        <img src="data:image/png;base64,<?= base64_encode($trip['frontImage']) ?>"
+                            alt="Front Image"><br><br>
+                        <label for="new_front_image">Upload New Front Image:</label>
+                        <input type="file" id="new_front_image" name="new_front_image" accept="image/*">
+                    </div>
+                    <?php
+                    $stmt = $pdo->prepare("SELECT * FROM imagesTrip WHERE trip_id = :trip_id");
+                    $stmt->bindParam(':trip_id', $tripId, PDO::PARAM_INT);
+                    $stmt->execute();
+                    $imagesList = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        <form action="admin/update_images.php" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="trip_id" value="<?= $trip['id'] ?>">
-            <label>Current Front Image:</label><br>
-            <img src="data:image/png;base64,<?= base64_encode($trip['frontImage']) ?>" alt="Front Image" style="max-width: 200px;"><br><br>
-            <label for="new_front_image">Upload New Front Image:</label>
-            <input type="file" id="new_front_image" name="new_front_image" accept="image/*">
-            <?php 
-            $stmt = $pdo->prepare("SELECT * FROM imagesTrip WHERE trip_id = :trip_id");
-            $stmt->bindParam(':trip_id', $tripId, PDO::PARAM_INT);
-            $stmt->execute();
-            $imagesList = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($imagesList as $image) { ?>
-                <div>
-                    <img src="data:image/png;base64,<?= base64_encode($image['image']) ?>" alt="Trip Image" style="max-width: 200px;">
-                    <a href="admin/delete_image.php?image_id=<?= $image['id'] ?>&trip_id=<?= $trip['id'] ?>" class="yellow" onclick="return confirm('Are you sure you want to delete this image?');">Delete</a>
-                </div>
-            <?php } ?>
+                    if (empty($imagesList)) {
+                        echo "<p>No additional images for this trip.</p>";
+                    } else {
+                        ?>
+                        <h3>Current Additional Images:</h3>
+                        <div class='additional-images yellow'>
+                            <?php
+                            foreach ($imagesList as $image) { ?>
+                                <div class="image-card yellow">
+                                    <img src="data:image/png;base64,<?= base64_encode($image['image']) ?>" alt="Trip Image">
+                                    <a href="admin/delete_image.php?image_id=<?= $image['id'] ?>&trip_id=<?= $trip['id'] ?>"
+                                        class="yellow"
+                                        onclick="return confirm('Are you sure you want to delete this image?');">Delete</a>
+                                </div>
+                            <?php }
+                    } ?>
+                    </div>
 
-            <label for="new_images">Upload New Images:</label>
-            <input type="file" id="new_images" name="new_images[]" accept="image/*" multiple>
-            <button type="submit">Upload New Images</button>
-        </form>
+                    <label for="new_images">Upload New Images:</label>
+                    <input type="file" id="new_images" name="new_images[]" accept="image/*" multiple>
+                    <button type="submit">Upload New Images</button>
+                </form>
+            </section>
+        </section>
     </main>
 
 
