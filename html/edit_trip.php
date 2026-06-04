@@ -42,23 +42,36 @@ if (isset($_GET['id'])) {
                 <h2>Edit trip information</h2>
                 <form action="admin/update_trip.php" method="POST">
                     <input type="hidden" name="trip_id" value="<?= $trip['id'] ?>">
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" name="title" value="<?= htmlspecialchars($trip['title']) ?>" required>
-                    <label for="description">Description:</label>
-                    <textarea id="description" name="description"
-                        required><?= htmlspecialchars($trip['description']) ?></textarea>
-                    <label for="location">Location:</label>
-                    <input type="text" id="location" name="location" value="<?= htmlspecialchars($trip['location']) ?>"
-                        required>
-                    <label for="price">Price:</label>
-                    <input type="number" id="price" name="price" value="<?= htmlspecialchars($trip['price']) ?>"
-                        step="0.01" required>
-                    <label for="startdate">Start Date:</label>
-                    <input type="date" id="startdate" name="startdate"
-                        value="<?= htmlspecialchars($trip['period_start']) ?>" required>
-                    <label for="enddate">End Date:</label>
-                    <input type="date" id="enddate" name="enddate" value="<?= htmlspecialchars($trip['period_end']) ?>"
-                        required>
+                    <div>
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" value="<?= htmlspecialchars($trip['title']) ?>"
+                            required>
+                    </div>
+                    <div>
+                        <label for="description">Description:</label>
+                        <textarea class="description" id="description" name="description"
+                            required><?= htmlspecialchars($trip['description']) ?></textarea>
+                    </div>
+                    <div>
+                        <label for="location">Location:</label>
+                        <input type="text" id="location" name="location"
+                            value="<?= htmlspecialchars($trip['location']) ?>" required>
+                    </div>
+                    <div>
+                        <label for="price">Price:</label>
+                        <input type="number" id="price" name="price" value="<?= htmlspecialchars($trip['price']) ?>"
+                            step="0.01" required>
+                    </div>
+                    <div>
+                        <label for="startdate">Start Date:</label>
+                        <input type="date" id="startdate" name="startdate"
+                            value="<?= htmlspecialchars($trip['period_start']) ?>" required>
+                    </div>
+                    <div>
+                        <label for="enddate">End Date:</label>
+                        <input type="date" id="enddate" name="enddate" value="<?= htmlspecialchars($trip['period_end']) ?>"
+                            required>
+                    </div>
                     <button type="submit">Update Trip</button>
                 </form>
             </section>
@@ -88,7 +101,7 @@ if (isset($_GET['id'])) {
                         <div class='additional-images yellow'>
                             <?php
                             foreach ($imagesList as $image) { ?>
-                                <div class="image-card yellow">
+                                <div class="image-card blue">
                                     <img src="data:image/png;base64,<?= base64_encode($image['image']) ?>" alt="Trip Image">
                                     <a href="admin/delete_image.php?image_id=<?= $image['id'] ?>&trip_id=<?= $trip['id'] ?>"
                                         class="yellow"
