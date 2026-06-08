@@ -32,10 +32,10 @@ if (isset($_POST['email'], $_POST['password'], $_POST['confirm_password'], $_POS
     $stmt->execute();
 
 
- header('Location: ' . (isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : '../index.php'));
+    header('Location: ' . (isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : '../index.php'));
 } else {
     $_SESSION['error'] = "Please fill in all fields.";
-    header('Location: ' . (isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : '../index.php'));
-    exit;
 }
+header('Location: ' . (isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : '../index.php'));
+exit;
 ?>

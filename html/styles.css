@@ -20,6 +20,16 @@ body {
     padding: 0;
 }
 
+.trip-image {
+    display: flex;
+    justify-content: center;
+}
+
+.trip-image img {
+    width: 850px;
+    height: 500px;
+    object-fit: cover;
+}
 
 /* header */
 header {
