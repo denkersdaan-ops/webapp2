@@ -26,8 +26,8 @@ body {
 }
 
 .trip-image img {
-    width: 850px;
-    height: 500px;
+    width: clamp(200px,80vw,850px);
+    height: auto;
     object-fit: cover;
 }
 
