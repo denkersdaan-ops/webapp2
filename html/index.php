@@ -9,7 +9,7 @@ include_once 'dbConection.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RijsBureau ROC</title>
+    <title>ReisBureau ROC</title>
     <link rel="stylesheet" href="styles.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +27,7 @@ include_once 'dbConection.php';
             <section class="content">
                 <div class="text-area">
                     <h1>Welcome to our website!</h1>
-                    <p>At RijsBureau ROC we help travelers discover great trips with professional planning, clear
+                    <p>At ReisBureau ROC we help travelers discover great trips with professional planning, clear
                         offers,
                         and friendly support. Our site is designed to look and feel like a real travel agency, with easy
                         booking options and a welcoming presentation that builds trust from the first visit.
