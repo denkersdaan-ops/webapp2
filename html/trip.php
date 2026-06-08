@@ -1,7 +1,5 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
 
 
 include_once 'dbConection.php';
@@ -15,6 +13,10 @@ $tripId = (int) $_GET['trip'];
 $stmt = $pdo->prepare("SELECT * FROM trip WHERE id = :id");
 $stmt->execute(['id' => $tripId]);
 $trip = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$stmt = $pdo->prepare("SELECT * FROM review WHERE trip_id = :id");
+$stmt->execute(['id' => $tripId]);
+$reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (!$trip) {
     header("Location: search.php?error=trip_not_found");
@@ -40,55 +42,76 @@ if (!$trip) {
 
 <body>
     <?php include_once 'header.php'; ?>
-<div><br></div>
+    <main>
+        <section id="trip-info">
+            <div class=trip-image>
+                <img src="data:image/png;base64, <?php echo base64_encode($trip["frontImage"]) ?>" alt="frontImage">
+            </div>
 
-    <div class=trip-image> 
-    <img src="data:image/png;base64, <?php echo base64_encode($trip["frontImage"]) ?>" alt="frontImage">
-</div>
+            <div class="info blue">
+                <p><?php echo ($trip["description"]) ?></p>
+                <p><?php echo ($trip["location"]) ?></p>
+                <p><?php echo ($trip["price"]) ?></p>
+            </div>
+        </section>
+        <section id="reviews">
+            <div id="review-input">
+                <?php if (isset($_SESSION['user_id'])) { ?>
+                    <form action="add-review.php" class="rate" method="POST">
+                        <input type="hidden" name="trip_id" value="<?php echo $tripId ?>">
+                        <input type="hidden" name="user_id"
+                            value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '' ?>">
+                        <input type="text" name="review" placeholder="write review" required>
+                        <input type="radio" id="star5" name="rate" value="5" />
+                        <label for="star5" title="text">5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" />
+                        <label for="star4" title="text">4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" />
+                        <label for="star3" title="text">3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="text">2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="text">1 star</label>
+                        <input type="submit" value="add Review">
+                    </form>
+                <?php } else { ?>
+                    <p>need to be logged in to write a review</p>
+                <?php } ?>
 
-<div><br></div>
+            </div>
+            <?php
+            foreach ($reviews as $review) {
 
-<div class=blue> 
-<br><?php echo($trip["description"]) ?> <br> <br> 
-<br> <?php echo($trip["location"]) ?> <br> <br> <br> <?php echo($trip["price"]) ?> <br>
- <br> <br> 
-</div>
+                $stmt = $pdo->prepare("SELECT * FROM user WHERE id = :user_id");
+                $stmt->bindparam(":user_id", $review["user_id"]);
+                $stmt->execute();
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-<div><br>
-<?php if(isset($_SESSION['user_id'])) {?>
-<form action="add-review.php" class="rate" method="POST">
-    <input type="hidden" name="trip_id" value="<?php echo $tripId ?>">
-    <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '' ?>">
-    <input type="text" name="review" placeholder="write review" required>
-    <input type="radio" id="star5" name="rate" value="5" />
-        <label for="star5" title="text">5 stars</label>
-        <input type="radio" id="star4" name="rate" value="4" />
-        <label for="star4" title="text">4 stars</label>
-        <input type="radio" id="star3" name="rate" value="3" />
-        <label for="star3" title="text">3 stars</label>
-        <input type="radio" id="star2" name="rate" value="2" />
-        <label for="star2" title="text">2 stars</label>
-        <input type="radio" id="star1" name="rate" value="1" />
-        <label for="star1" title="text">1 star</label>
-    <input type="submit" value="add Review">
-</form>
-<?php } else{?>
-    <p>need to be logged in to write a review</p>
-<?php } ?>
-</div>
-<?php 
-foreach ($reviews as $review){ 
-?>
-<div class=blue> 
-<br> <br> <br> <br> <?php echo($review["comment"]) ?><br> <br> <br> <br> 
-</div>
-<br>
-<?php 
-}
-?>
+                ?>
+                <div class="trip-commend blue">
+                    <div class="commend-header">
+                        <h4><?php echo $user["name"] ?></h4>
+                        <div class="commend-stars">
+                            <?php
+                            for ($i = 1; $i <= 5; $i++) {
+                                if ($i <= $review["rating"]) {
+                                    echo "<h3 class=\"selected-star\">★<h3>";
+                                } else {
+                                    echo "<h3 class=\"star\">★<h3>";
+                                }
 
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <p> <?php echo $review["comment"] ?></p>
+                </div>
 
-<div><br></div>
+                <?php
+            }
+            ?>
+        </section>
+    </main>
 </body>
 
 </html>
