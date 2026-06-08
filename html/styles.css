@@ -44,7 +44,6 @@ header {
 .main-logo {
     width: 100px;
     height: 100px;
-    border-radius: 50%;
 }
 
 #search-input {
@@ -154,7 +153,7 @@ footer a {
 
 #home-page-aside {
     padding: 20px;
-    height: 100%;
+    height: calc(100% - 40px);
 }
 
 .text-area {
@@ -282,6 +281,11 @@ footer a {
     .carousel-layout .position-left2,
     .carousel-layout .position-right2 {
         opacity: 0;
+    }
+
+    .search-result-item img,
+    .booking-item img {
+        width: clamp(150px, 30vw, 300px);
     }
 }
 
