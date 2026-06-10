@@ -79,6 +79,13 @@ if (!$trip) {
                 <?php } ?>
 
             </div>
+
+            <form action="add-booking.php" method="POST">
+                <input type="submit" value="add to bookings">
+                <input type="hidden" name="trip_id" value="<?php echo $tripId ?>">
+                <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '' ?>" >
+            </form>
+
             <?php
             foreach ($reviews as $review) {
 
