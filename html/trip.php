@@ -11,12 +11,16 @@ if (!isset($_GET['trip']) || !is_numeric($_GET['trip'])) {
 $tripId = (int) $_GET['trip'];
 
 $stmt = $pdo->prepare("SELECT * FROM trip WHERE id = :id");
-$stmt->execute(['id' => $tripId]);
-$trip = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt->execute([':id' => $tripId]);
+$trip = $stmt->fetch();
 
 $stmt = $pdo->prepare("SELECT * FROM review WHERE trip_id = :id");
-$stmt->execute(['id' => $tripId]);
-$reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->execute([':id' => $tripId]);
+$reviews = $stmt->fetchAll();
+
+$stmt = $pdo->prepare("SELECT image FROM imagesTrip WHERE trip_id = :id");
+$stmt->execute([':id' => $tripId]);
+$images = $stmt->fetchAll();
 
 if (!$trip) {
     header("Location: search.php?error=trip_not_found");
@@ -47,6 +51,13 @@ if (!$trip) {
             <div class=trip-image>
                 <img src="data:image/png;base64, <?php echo base64_encode($trip["frontImage"]) ?>" alt="frontImage">
             </div>
+
+             <div id="gallery" class="blue margin">
+                <?php foreach($images as $image){?>
+                <img class=small-trip-image src="images/<?php echo $tripId ?>/<?php echo $image["image"] ?>" alt="sideImage">
+                <?php } ?>
+            </div>
+            
 
             <div class="info blue">
                 <p><?php echo ($trip["description"]) ?></p>
