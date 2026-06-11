@@ -521,6 +521,8 @@ footer a {
     padding: 20px;
     border-radius: 20px;
 
+    margin-top: 20px;
+
     display: grid;
     grid-template-columns: 5fr 1fr;
 }
@@ -532,7 +534,7 @@ footer a {
     justify-content: space-between;
 }
 
-.admin-btn{
+.admin-btn {
     display: inline-block;
     padding: 10px 20px;
     border-radius: 6px;
@@ -562,7 +564,7 @@ footer a {
     overflow-x: hidden;
 }
 
-.image-card{
+.image-card {
     display: flex;
     flex-direction: column;
 }
@@ -574,7 +576,7 @@ footer a {
     object-fit: cover;
 }
 
-.description{
+.description {
     width: 100%;
     height: auto;
     max-height: 200px;
@@ -582,11 +584,34 @@ footer a {
     resize: none;
 }
 
-.edit_fornt_image{
+.edit_fornt_image {
     width: clamp(200px, 40vw, 500px);
 }
 
-#add_form{
+#add_form {
     padding: 20px;
     border-radius: 10px;
+}
+
+.user_card {
+    padding: 10px;
+    border-radius: 10px;
+
+    margin-top: 20px;
+
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+}
+
+
+#links li a {
+    text-decoration: none;
+    color: black;
+    font-size: 2rem;
+    transition: ease 0.5s;
+}
+
+#links li a:hover {
+    font-size: 2.2rem;
+    transition: ease 0.5s;
 }
