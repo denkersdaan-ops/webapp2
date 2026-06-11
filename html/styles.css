@@ -574,11 +574,19 @@ footer a {
     object-fit: cover;
 }
 
-
 .description{
     width: 100%;
     height: auto;
     max-height: 200px;
     overflow-y: auto;
     resize: none;
+}
+
+.edit_fornt_image{
+    width: clamp(200px, 40vw, 500px);
+}
+
+#add_form{
+    padding: 20px;
+    border-radius: 10px;
 }

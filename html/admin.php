@@ -28,7 +28,7 @@ include_once 'dbConection.php';
             <?php
             if (isset($_GET['add_trip']) && $_GET['add_trip'] == 'true') {
             ?>
-            <form action="admin/add_trip_process.php" method="POST" enctype="multipart/form-data">
+            <form id="add_form" class="blue" action="admin/add_trip_process.php" method="POST" enctype="multipart/form-data">
                 <input type="text" name="trip_title" placeholder="Trip Title" required>
                 <input type="text" name="trip_description" placeholder="Trip Description" required>
                 <input type="text" name="trip_location" placeholder="Location" required>
