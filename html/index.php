@@ -1,6 +1,21 @@
 <?php
 session_start();
 include_once 'dbConection.php';
+
+$stmt = $pdo->query("SELECT * FROM trip ORDER BY bought DESC LIMIT 10");
+$trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if (!$stmt) {
+    $error = $pdo->errorInfo();
+    die("Query error: " . $error[2]);
+}
+
+$reviews = [];
+foreach ($trips as $trip) {
+    $stmt = $pdo->prepare("SELECT review.comment,review.rating,review.trip_id, user.name FROM review CROSS JOIN user ON review.user_id = user.id WHERE trip_id = :trip_id ORDER BY post_date DESC LIMIT 6");
+    $stmt->bindParam(':trip_id', $trip['id'], PDO::PARAM_INT);
+    $stmt->execute();
+    $reviews = array_merge($reviews, $stmt->fetchAll());
+}
 ?>
 
 <!DOCTYPE html>
@@ -57,17 +72,31 @@ include_once 'dbConection.php';
                                 <a href="#"><img src="images/scroll-images/Afbeelding5.png" alt="Ghost right far"></a>
                             </div>
                         </div>
-                        <button class="prev-btn">&lt;</button>
-                        <button class="next-btn">&gt;</button>
+                        <button class="prev-btn"><</button>
+                        <button class="next-btn">></button>
                     </div>
                 </section>
             </section>
             <aside id="home-page-aside" class="yellow">
                 <h2>Recent Posts</h2>
                 <ul>
-                    <li><a href="#">Post 1</a></li>
-                    <li><a href="#">Post 2</a></li>
-                    <li><a href="#">Post 3</a></li>
+                    <?php
+                    if (empty($reviews)) {
+                        echo "<p>No reviews found.</p>";
+                    } else {
+                        foreach ($reviews as $review) {
+                            ?>
+                            <li class="trip_id_<?= $review['trip_id'] ?> review-item hidden">
+                                <p><strong><?= htmlspecialchars($review['name']) ?></strong><br>
+                                    <a href="trip.php?trip=<?= $review['trip_id'] ?>">
+                                        <?= htmlspecialchars($review['comment']) ?>
+                                    </a>
+                                </p>
+                            </li>
+
+                        <?php }
+                    }
+                    ?>
                 </ul>
 
             </aside>
@@ -78,13 +107,6 @@ include_once 'dbConection.php';
             const slides = [
                 // PHP code to fetch images from the database and generate the slides array 
                 <?php
-                $stmt = $pdo->query("SELECT * FROM trip ORDER BY bought DESC LIMIT 10");
-                $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                if (!$stmt) {
-                    $error = $pdo->errorInfo();
-                    die("Query error: " . $error[2]);
-                }
-
                 foreach ($trips as $trip) {
                     echo "{ id: " . (int) $trip['id'] . ", src: 'data:image/png;base64," . base64_encode($trip['frontImage']) . "', alt: '" . addslashes($trip['title']) . "' },";
                 }
@@ -138,6 +160,11 @@ include_once 'dbConection.php';
                     wrapIndex(currentIndex + 1),
                     wrapIndex(currentIndex + 2),
                 ];
+
+                document.querySelectorAll('.review-item').forEach(item => item.classList.add('hidden'));
+                const currentTripId = slides[currentIndex].id;
+
+                document.querySelectorAll("li.trip_id_" + currentTripId).forEach(review => review.classList.remove('hidden'));
 
                 wrappers.forEach((wrapper, idx) => {
                     const slide = slides[indexMap[idx]];

@@ -102,7 +102,7 @@ if (isset($_GET['id'])) {
                             <?php
                             foreach ($imagesList as $image) { ?>
                                 <div class="image-card blue">
-                                    <img src="data:image/png;base64,<?= base64_encode($image['image']) ?>" alt="Trip Image">
+                                    <img src="images/<?= $trip['id'] ?>/<?= $image['image'] ?>" alt="Trip Image">
                                     <a href="admin/delete_image.php?image_id=<?= $image['id'] ?>&trip_id=<?= $trip['id'] ?>"
                                         class="yellow"
                                         onclick="return confirm('Are you sure you want to delete this image?');">Delete</a>

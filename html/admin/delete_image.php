@@ -11,10 +11,20 @@ if(!isset($_SESSION['user_id']) || $_SESSION['user_id'] !== 1) {
 if(isset($_GET['image_id'])) {
     $imageId = $_GET['image_id'];
 
+    $stmt = $pdo->prepare("SELECT image FROM imagesTrip WHERE id = :image_id");
+    $stmt->bindParam(':image_id', $imageId, PDO::PARAM_INT);
+    $stmt->execute();
+    $image = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if(file_exists('../images/' . $_GET['trip_id'] . '/' . $image['image'])) {
+        unlink('../images/' . $_GET['trip_id'] . '/' . $image['image']);
+    }
+
     // Delete the image record from the database
     $stmt = $pdo->prepare("DELETE FROM imagesTrip WHERE id = :image_id");
     $stmt->bindParam(':image_id', $imageId, PDO::PARAM_INT);
     $stmt->execute();
+    
 }
 
 header('Location: ../edit_trip.php?id=' . $_GET['trip_id']);

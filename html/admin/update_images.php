@@ -23,10 +23,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         foreach ($tmpNames as $tmpName) {
             if ($tmpName !== '' && is_uploaded_file($tmpName)) {
-                $imageData = file_get_contents($tmpName);
+                if (!is_dir('../images/' . $tripId)) {
+                    mkdir('../images/' . $tripId, 0777, true);
+                }
+
+                $imageName = basename($tmpName);
+                move_uploaded_file($tmpName, '../images/' . $tripId . '/' . $imageName);
+
                 $stmt = $pdo->prepare("INSERT INTO imagesTrip (trip_id, image) VALUES (:trip_id, :image)");
                 $stmt->bindParam(':trip_id', $tripId, PDO::PARAM_INT);
-                $stmt->bindParam(':image', $imageData, PDO::PARAM_LOB);
+                $stmt->bindParam(':image', $imageName, PDO::PARAM_STR);
                 $stmt->execute();
             }
         }

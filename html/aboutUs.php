@@ -42,7 +42,7 @@
                         even if it is part of a school assignment, by featuring polished visuals, useful travel advice,
                         and a friendly, professional voice.</p>
 
-                    <p><strong>yes ai wrote this i'm not writing a hole text for this project</strong></p>
+                    <p><strong>yes ai wrote this i'm not writing a whole text for this project</strong></p>
                 </div>
             </section>
             <aside id="about-us-image" class="margin yellow">
