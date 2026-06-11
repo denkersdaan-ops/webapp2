@@ -14,7 +14,7 @@ if(isset($_GET['image_id'])) {
     $stmt = $pdo->prepare("SELECT image FROM imagesTrip WHERE id = :image_id");
     $stmt->bindParam(':image_id', $imageId, PDO::PARAM_INT);
     $stmt->execute();
-    $image = $stmt->fetch(PDO::FETCH_ASSOC);
+    $image = $stmt->fetch();
 
     if(file_exists('../images/' . $_GET['trip_id'] . '/' . $image['image'])) {
         unlink('../images/' . $_GET['trip_id'] . '/' . $image['image']);

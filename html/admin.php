@@ -53,7 +53,7 @@ include_once 'dbConection.php';
 
         <?php
         $stmt = $pdo->query("SELECT * FROM trip");
-        $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $trips = $stmt->fetchAll();
         foreach ($trips as $trip) { ?>
             <div class="admin-trip blue margin">
                 <div>
