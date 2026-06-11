@@ -15,6 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $stmt->bindParam(':trip_id', $tripId, PDO::PARAM_INT);
     $stmt->execute();
 
+    if(file_exists('../images/' . $tripId)) {
+        rmdir('../images/' . $tripId); // remove the directory
+    }
+
     // Then delete the trip
     $stmt = $pdo->prepare("DELETE FROM trip WHERE id = :trip_id");
     $stmt->bindParam(':trip_id', $tripId, PDO::PARAM_INT);

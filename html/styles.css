@@ -475,6 +475,10 @@ footer a {
     display: none;
 }
 
+.hidden {
+    display: none;
+}
+
 .forgot-password-from,
 .register-form {
     display: flex;
