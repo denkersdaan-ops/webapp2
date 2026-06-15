@@ -82,7 +82,7 @@ if (isset($_GET['id'])) {
                     <div>
                         <input type="hidden" name="trip_id" value="<?= $trip['id'] ?>">
                         <label>Current Front Image:</label><br>
-                        <img src="data:image/png;base64,<?= base64_encode($trip['frontImage']) ?>" class="edit_front_image"
+                        <img class="edit_fornt_image" src="data:image/png;base64,<?= base64_encode($trip['frontImage']) ?>"
                             alt="Front Image"><br><br>
                         <label for="new_front_image">Upload New Front Image:</label>
                         <input type="file" id="new_front_image" name="new_front_image" accept="image/*">

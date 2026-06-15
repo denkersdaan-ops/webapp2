@@ -537,6 +537,8 @@ footer a {
     padding: 20px;
     border-radius: 20px;
 
+    margin-top: 20px;
+
     display: grid;
     grid-template-columns: 5fr 1fr;
 }
@@ -548,7 +550,7 @@ footer a {
     justify-content: space-between;
 }
 
-.admin-btn{
+.admin-btn {
     display: inline-block;
     padding: 10px 20px;
     border-radius: 6px;
@@ -578,7 +580,7 @@ footer a {
     overflow-x: hidden;
 }
 
-.image-card{
+.image-card {
     display: flex;
     flex-direction: column;
 }
@@ -590,8 +592,7 @@ footer a {
     object-fit: cover;
 }
 
-
-.description{
+.description {
     width: 100%;
     height: auto;
     max-height: 200px;
@@ -599,84 +600,34 @@ footer a {
     resize: none;
 }
 
-.rate {
-    float: left;
-    height: 46px;
-    padding: 0 10px;
+.edit_fornt_image {
+    width: clamp(200px, 40vw, 500px);
 }
 
-.rate:not(:checked)>input[type="radio"] {
-    position: absolute;
-    top: -9999px;
+#add_form {
+    padding: 20px;
+    border-radius: 10px;
 }
 
-.rate:not(:checked)>label {
-    float: right;
-    width: 1em;
-    overflow: hidden;
-    white-space: nowrap;
-    cursor: pointer;
-    font-size: 30px;
-    color: #ccc;
-}
-
-.rate:not(:checked)>label:before {
-    content: '★ ';
-}
-
-.rate>input:checked~label {
-    color: #ffc700;
-}
-
-.rate:not(:checked)>label:hover,
-.rate:not(:checked)>label:hover~label {
-    color: #deb217;
-}
-
-.rate>input:checked+label:hover,
-.rate>input:checked+label:hover~label,
-.rate>input:checked~label:hover,
-.rate>input:checked~label:hover~label,
-.rate>label:hover~input:checked~label {
-    color: #c59b08;
-}
-
-#submit-rating {
-    margin-top: 10px;
-    padding: 5px 10px;
-    background-color: #ffc700;
-    border: none;
-    cursor: pointer;
-}
-
-.trip-commend{
+.user_card {
     padding: 10px;
-}
+    border-radius: 10px;
 
-.commend-header,
-.commend-stars{
-    display: flex;
-}
+    margin-top: 20px;
 
-.selected-star{
-    color: #c59b08;
-}
-
-#reviews{
     display: grid;
-
-    margin-top: 30px;
-    margin-bottom: 30px;
-
-    grid-template-rows: 1fr;
-    gap: 30px
+    grid-template-columns: 5fr 1fr;
 }
 
-.info{
-    display: flex;
-    padding: 10px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    gap: 50px;
+
+#links li a {
+    text-decoration: none;
+    color: black;
+    font-size: 2rem;
+    transition: ease 0.5s;
 }
 
+#links li a:hover {
+    font-size: 2.2rem;
+    transition: ease 0.5s;
+}
