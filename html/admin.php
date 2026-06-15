@@ -60,20 +60,18 @@ include_once 'dbConection.php';
             }
             ?>
 
-            <?php
-            $stmt = $pdo->query("SELECT * FROM trip");
-            $trips = $stmt->fetchAll();
-            foreach ($trips as $trip) { ?>
-                <div class="admin-trip blue">
-                    <div>
-                        <h2><?= htmlspecialchars($trip['title']); ?></h2>
-                        <p><?= htmlspecialchars($trip['description']); ?></p>
-                    </div>
-                    <div class="admin-btns">
-                        <a href="edit_trip.php?id=<?= $trip['id']; ?>" class="admin-btn yellow">Edit</a>
-                        <a href="admin/delete_trip_process.php?trip_id=<?= $trip['id']; ?>" class="admin-btn yellow"
-                            onclick="return confirm('Are you sure you want to delete this trip?');">Delete</a>
-                    </div>
+        <?php
+        $stmt = $pdo->query("SELECT * FROM trip");
+        $trips = $stmt->fetchAll();
+        foreach ($trips as $trip) { ?>
+            <div class="admin-trip blue margin">
+                <div>
+                    <h2><?= htmlspecialchars($trip['title']); ?></h2>
+                    <p><?= htmlspecialchars($trip['description']); ?></p>
+                </div>
+                <div class="admin-btns">
+                    <a href="edit_trip.php?id=<?= $trip['id']; ?>" class="admin-btn yellow">Edit</a>
+                    <a href="admin/delete_trip_process.php?trip_id=<?= $trip['id']; ?>" class="admin-btn yellow" onclick="return confirm('Are you sure you want to delete this trip?');">Delete</a>
                 </div>
             <?php } ?>
         </section>

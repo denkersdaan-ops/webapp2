@@ -11,7 +11,7 @@ include_once 'dbConection.php';
 $stmt = $pdo->prepare("SELECT * FROM user WHERE id = :id");
 $stmt->bindParam(':id', $_SESSION['user_id'], PDO::PARAM_INT);
 $stmt->execute();
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+$user = $stmt->fetch();
 ?>
 
 <!DOCTYPE html>
@@ -51,13 +51,13 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             $stmt = $pdo->prepare("SELECT * FROM booking WHERE user_id = :user_id");
             $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
             $stmt->execute();
-            $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $bookings = $stmt->fetchAll();
 
             foreach ($bookings as $booking) {
                 $tripstmt = $pdo->prepare("SELECT * FROM trip WHERE id = :trip_id");
                 $tripstmt->bindParam(':trip_id', $booking['trip_id'], PDO::PARAM_INT);
                 $tripstmt->execute();
-                $trip = $tripstmt->fetch(PDO::FETCH_ASSOC);
+                $trip = $tripstmt->fetch();
 
                 ?>
                 <a href="trip.php?trip=<?= $trip['id'] ?>" class="booking-item blue">

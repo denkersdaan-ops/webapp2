@@ -17,7 +17,7 @@ if (isset($_POST['email'], $_POST['password'], $_POST['confirm_password'], $_POS
     $stmt = $pdo->prepare("SELECT * FROM user WHERE email = :email");
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->execute();
-    $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
+    $existingUser = $stmt->fetch();
 
     if ($existingUser) {
         $_SESSION['error'] = "Email is already registered.";

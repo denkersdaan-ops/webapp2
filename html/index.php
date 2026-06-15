@@ -3,7 +3,7 @@ session_start();
 include_once 'dbConection.php';
 
 $stmt = $pdo->query("SELECT * FROM trip ORDER BY bought DESC LIMIT 10");
-$trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$trips = $stmt->fetchAll();
 if (!$stmt) {
     $error = $pdo->errorInfo();
     die("Query error: " . $error[2]);

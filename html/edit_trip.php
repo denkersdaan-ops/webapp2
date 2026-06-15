@@ -11,7 +11,7 @@ if (isset($_GET['id'])) {
     $stmt = $pdo->prepare("SELECT * FROM trip WHERE id = :id");
     $stmt->bindParam(':id', $tripId, PDO::PARAM_INT);
     $stmt->execute();
-    $trip = $stmt->fetch(PDO::FETCH_ASSOC);
+    $trip = $stmt->fetch();
 
     if (!$trip) {
         header('Location: admin.php');
@@ -69,8 +69,8 @@ if (isset($_GET['id'])) {
                     </div>
                     <div>
                         <label for="enddate">End Date:</label>
-                        <input type="date" id="enddate" name="enddate" value="<?= htmlspecialchars($trip['period_end']) ?>"
-                            required>
+                        <input type="date" id="enddate" name="enddate"
+                            value="<?= htmlspecialchars($trip['period_end']) ?>" required>
                     </div>
                     <button type="submit">Update Trip</button>
                 </form>
@@ -91,7 +91,7 @@ if (isset($_GET['id'])) {
                     $stmt = $pdo->prepare("SELECT * FROM imagesTrip WHERE trip_id = :trip_id");
                     $stmt->bindParam(':trip_id', $tripId, PDO::PARAM_INT);
                     $stmt->execute();
-                    $imagesList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    $imagesList = $stmt->fetchAll();
 
                     if (empty($imagesList)) {
                         echo "<p>No additional images for this trip.</p>";
@@ -101,7 +101,7 @@ if (isset($_GET['id'])) {
                         <div class='additional-images yellow'>
                             <?php
                             foreach ($imagesList as $image) { ?>
-                                <div class="image-card blue">
+                                <div class="image-card">
                                     <img src="images/<?= $trip['id'] ?>/<?= $image['image'] ?>" alt="Trip Image">
                                     <a href="admin/delete_image.php?image_id=<?= $image['id'] ?>&trip_id=<?= $trip['id'] ?>"
                                         class="yellow"
