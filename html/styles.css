@@ -537,12 +537,23 @@ footer a {
 }
 
 .booking-item {
-    display: flex;
+    display: grid;
     align-items: center;
+    grid-template-columns: 2fr 10fr 1fr;
     gap: 10px;
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
+    text-decoration: none;
+}
+
+#cancel-btn{
+    background-color: #ff6969;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 1.5rem;
+}
+
     text-decoration: none;
 }
 
@@ -703,8 +714,6 @@ footer a {
     width: clamp(100px,20%,200px);
 }
 
-}
-
 .admin-trip {
     padding: 20px;
     border-radius: 20px;
@@ -803,3 +812,4 @@ footer a {
     font-size: 2.2rem;
     transition: ease 0.5s;
 }
+
