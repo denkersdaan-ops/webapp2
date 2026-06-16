@@ -20,6 +20,32 @@ body {
     padding: 0;
 }
 
+.trip-image {
+    display: flex;
+    justify-content: center;
+}
+
+.trip-image img {
+    width: clamp(200px,80vw,850px);
+    height: auto;
+    object-fit: cover;
+}
+
+#gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;    
+    border-radius: 20px;
+    padding: 10px;
+    gap:10px;
+}
+
+.small-trip-image {
+    width: clamp(100px,40vw,475px);
+    border-radius: 20px;   
+    height: auto;
+    object-fit: cover;
+}
 
 /* header */
 header {
@@ -132,6 +158,18 @@ footer {
     margin: 20px;
     padding: 20px;
     text-align: center;
+}
+
+footer form button {
+    padding: 10px 20px;
+    border-radius: 2em;
+    border: none;
+    background-color: #9CCFE3;
+    color: black;
+    font-family: "DynaPuff", Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 1.4rem;
+    cursor: pointer;
 }
 
 footer a {
@@ -465,6 +503,10 @@ footer a {
     display: none;
 }
 
+.hidden {
+    display: none;
+}
+
 .forgot-password-from,
 .register-form {
     display: flex;
@@ -502,9 +544,6 @@ footer a {
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
-<<<<<<< Updated upstream
-}
-=======
     text-decoration: none;
 }
 
@@ -513,6 +552,9 @@ footer a {
     padding: 10px;
     border-radius: 20px;
     font-size: 1.5rem;
+}
+
+    text-decoration: none;
 }
 
 .booking-item:hover {
@@ -770,4 +812,4 @@ footer a {
     font-size: 2.2rem;
     transition: ease 0.5s;
 }
->>>>>>> Stashed changes
+

@@ -37,7 +37,7 @@
                     $stmt->execute(['term' => "%{$searchTerm}%"]);
                 }
 
-                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $result = $stmt->fetchAll();
 
                 if (!$result) {
                     echo "<p>No items found.</p>";
