@@ -495,10 +495,279 @@ footer a {
 }
 
 .booking-item {
-    display: flex;
+    display: grid;
     align-items: center;
+    grid-template-columns: 2fr 10fr 1fr;
     gap: 10px;
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
+<<<<<<< Updated upstream
 }
+=======
+    text-decoration: none;
+}
+
+#cancel-btn{
+    background-color: #ff6969;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 1.5rem;
+}
+
+.booking-item:hover {
+    transform: scale(1.015);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: ease 0.3s;
+}
+
+#policy {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+
+}
+
+#policy .text-area {
+    background-color: #fff;
+    width: clamp(250px, 90vw, 560px);
+    padding: 24px;
+    border-radius: 12px;
+    max-width: 95%;
+}
+
+#policy img {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+
+.rate:not(:checked)>input[type="radio"] {
+    position: absolute;
+    top: -9999px;
+}
+
+.rate:not(:checked)>label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
+}
+
+.rate:not(:checked)>label:before {
+    content: '★ ';
+}
+
+.rate>input:checked~label {
+    color: #ffc700;
+}
+
+.rate:not(:checked)>label:hover,
+.rate:not(:checked)>label:hover~label {
+    color: #deb217;
+}
+
+.rate>input:checked+label:hover,
+.rate>input:checked+label:hover~label,
+.rate>input:checked~label:hover,
+.rate>input:checked~label:hover~label,
+.rate>label:hover~input:checked~label {
+    color: #c59b08;
+}
+
+#submit-rating {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #ffc700;
+    border: none;
+    cursor: pointer;
+}
+
+#submit-rating {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #ffc700;
+    border: none;
+    cursor: pointer;
+}
+
+.commend-header,
+.commend-stars{
+    display: flex;
+}
+
+.selected-star{
+    color: #c59b08;
+}
+
+#reviews{
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+}
+
+.info{
+    display: flex;
+    padding: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    gap: 50px;
+}
+
+.booking-btn{
+    margin: 10px;
+}
+
+#bookingen{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+#mail{
+    margin: 20px;
+    border-radius: 40px;
+    padding: 20px;
+    min-height: calc(100vh - 210px); /* 110px header 10px header padding 20px margin main 20px padding mail*/
+}
+
+#mail form{
+    display: grid;
+    grid-template-rows: 64px 64px calc(100vh - 428px);
+    gap: 20px;
+}
+#mail form button,
+#mail form input,
+#mail form textarea{
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#mail form textarea{
+    resize: none;
+}
+
+#mail form button{
+    width: clamp(100px,20%,200px);
+}
+
+.admin-trip {
+    padding: 20px;
+    border-radius: 20px;
+
+    margin-top: 20px;
+
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+}
+
+.admin-btns {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.admin-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-right: 10px;
+    width: calc(100% - 40px);
+    text-align: center;
+}
+
+#trip-edit-info,
+#trip-edit-images {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    border-radius: 20px;
+}
+
+#trip-edit-images .additional-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 4px;
+    border-radius: 20px;
+    overflow-y: auto;
+    max-height: 600px;
+    overflow-x: hidden;
+}
+
+.image-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-card img {
+    border-radius: 20px;
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.description {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    overflow-y: auto;
+    resize: none;
+}
+
+.edit_fornt_image {
+    width: clamp(200px, 40vw, 500px);
+}
+
+#add_form {
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.user_card {
+    padding: 10px;
+    border-radius: 10px;
+
+    margin-top: 20px;
+
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+}
+
+
+#links li a {
+    text-decoration: none;
+    color: black;
+    font-size: 2rem;
+    transition: ease 0.5s;
+}
+
+#links li a:hover {
+    font-size: 2.2rem;
+    transition: ease 0.5s;
+}
+>>>>>>> Stashed changes
