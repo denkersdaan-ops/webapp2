@@ -73,8 +73,7 @@ session_start();
         </section>
     </main>
     <footer class="blue">
-
-        <a href="mailto:Who_Asked_Box_54321@gmail.com">Contact Us</a>
+        <a href="contect.php">Contact Us</a>
         <a href="tel:31123456789">31 123456789</a>
         <form action="aboutUs.php" method="get">
             <button type="submit" name="Policy" value="true">Privacy Policy</button>

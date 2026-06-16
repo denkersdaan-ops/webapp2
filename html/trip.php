@@ -35,5 +35,101 @@
 <body>
     <?php include_once 'header.php'; ?>
 
+             <div id="gallery" class="blue margin">
+                <?php foreach($images as $image){?>
+                <img class=small-trip-image src="images/<?php echo $tripId ?>/<?php echo $image["image"] ?>" alt="sideImage">
+                <?php } ?>
+            </div>
+            
+
+            <div class="info blue">
+                <p><?php echo ($trip["description"]) ?></p>
+                <p><?php echo ($trip["location"]) ?></p>
+                <p><?php echo ($trip["price"]) ?></p>
+            </div>
+        </section>
+        <section id="reviews-trip">
+            <div id="review-input">
+                <?php if (isset($_SESSION['user_id'])) { ?>
+                    <form action="add-review.php" class="rate" method="POST">
+                        <input type="hidden" name="trip_id" value="<?php echo $tripId ?>">
+                        <input type="hidden" name="user_id"
+                            value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '' ?>">
+                        <input type="text" name="review" placeholder="write review" required>
+                        <input type="radio" id="star5" name="rate" value="5" />
+                        <label for="star5" title="text">5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" />
+                        <label for="star4" title="text">4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" />
+                        <label for="star3" title="text">3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="text">2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="text">1 star</label>
+                        <input type="submit" value="add Review">
+                    </form>
+                <?php } else { ?>
+                    <p>need to be logged in to write a review</p>
+                <?php } ?>
+
+            </div>
+            <?php 
+            if (isset($_SESSION['user_id'])) {
+                $stmt=$pdo->prepare( "SELECT user_id FROM booking WHERE trip_id = :trip_id AND user_id = :user_id");
+                $stmt->bindparam(":trip_id", $tripId);
+                $stmt->bindparam(":user_id", $_SESSION["user_id"]);
+                $stmt->execute();
+                $user_id = $stmt->fetchColumn();
+
+                if ($user_id != $_SESSION["user_id"]) {
+                ?>
+                <form action="add-booking.php" method="POST">
+                    <input type="submit" value="add to bookings">
+                    <input type="hidden" name="trip_id" value="<?php echo $tripId ?>">
+                    <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '' ?>" >
+                </form>
+            <?php
+                } else { 
+                    echo "<h4 > Cannot add booking, user already has this booking </h4>";
+                }
+            }else{
+                echo "<h4>need to be logged in to add booking(s)</h4>";
+            }
+                ?>
+
+
+            <?php
+            foreach ($reviews as $review) {
+
+                $stmt = $pdo->prepare("SELECT * FROM user WHERE id = :user_id");
+                $stmt->bindparam(":user_id", $review["user_id"]);
+                $stmt->execute();
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                ?>
+                <div class="trip-commend blue">
+                    <div class="commend-header">
+                        <h4><?php echo $user["name"] ?></h4>
+                        <div class="commend-stars">
+                            <?php
+                            for ($i = 1; $i <= 5; $i++) {
+                                if ($i <= $review["rating"]) {
+                                    echo "<h3 class=\"selected-star\">★<h3>";
+                                } else {
+                                    echo "<h3 class=\"star\">★<h3>";
+                                }
+
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <p> <?php echo $review["comment"] ?></p>
+                </div>
+
+                <?php
+            }
+            ?>
+        </section>
+    </main>
 </body>
 </html>
