@@ -4,9 +4,13 @@ $dbname = "mydatabase";    // uit jouw docker-compose
 $username = "user";        // MYSQL_USER
 $password = "password";    // MYSQL_PASSWORD
 
+$options = [
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+];
+
 try {
     $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8";
-    $pdo = new PDO($dsn, $username, $password);
+    $pdo = new PDO($dsn, $username, $password, $options);
 } catch (PDOException $e) {
     echo "Database fout: " . $e->getMessage();
 }

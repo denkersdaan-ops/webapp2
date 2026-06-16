@@ -55,7 +55,7 @@ session_start();
                         sound like a real travel bureau, with a focus on strong visuals, confident wording, and a sense
                         of dependable expertise. For this school assignment, we make sure the About Us section looks
                         authentic and inviting to anyone browsing our site.</p>
-                    <p>As a project for RijsBureau ROC, we show how a modern travel company can use clean design and
+                    <p>As a project for ReisBureau ROC, we show how a modern travel company can use clean design and
                         engaging content to communicate value. Visitors can expect clear information, a welcoming tone,
                         and a structured layout that reinforces the impression of a full-service agency.
                     </p>
@@ -64,7 +64,7 @@ session_start();
                         even if it is part of a school assignment, by featuring polished visuals, useful travel advice,
                         and a friendly, professional voice.</p>
 
-                    <p><strong>yes ai wrote this i'm not writing a hole text for this project</strong></p>
+                    <p><strong>yes ai wrote this i'm not writing a whole text for this project</strong></p>
                 </div>
             </section>
             <aside id="about-us-image" class="margin yellow">

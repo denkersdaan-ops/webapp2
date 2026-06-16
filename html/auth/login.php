@@ -6,8 +6,13 @@ $stmt = $pdo->prepare("SELECT * FROM user WHERE email = :email and password = :p
 $stmt->bindParam(':email', $_POST['email'], PDO::PARAM_STR);
 $stmt->bindParam(':password', $_POST['password'], PDO::PARAM_STR);
 $stmt->execute();
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+$user = $stmt->fetch();
 
-header('Location: ' . $_SERVER['HTTP_REFERER'] ?? '../index.php');
+header('Location: ' .(isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : '../index.php'));
 $_SESSION['user_id'] = $user['id'];
+if ($user['admin'] == 1) {
+    $_SESSION['is_admin'] = 1;
+} else {
+    $_SESSION['is_admin'] = 0;
+}
 exit;

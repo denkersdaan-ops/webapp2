@@ -1,27 +1,36 @@
 <?php
-    session_start();
+session_start();
 
 
-    include_once 'dbConection.php';
+include_once 'dbConection.php';
 
-    if (!isset($_GET['trip']) || !is_numeric($_GET['trip'])) {
-        die("Invalid trip ID.");
-    }
+if (!isset($_GET['trip']) || !is_numeric($_GET['trip'])) {
+    die("Invalid trip ID.");
+}
 
-    $tripId = (int)$_GET['trip'];
+$tripId = (int) $_GET['trip'];
 
-    $stmt = $pdo->prepare("SELECT * FROM trip WHERE id = :id");
-    $stmt->execute(['id' => $tripId]);
-    $trip = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt = $pdo->prepare("SELECT * FROM trip WHERE id = :id");
+$stmt->execute([':id' => $tripId]);
+$trip = $stmt->fetch();
 
-    if (!$trip) {
-        header("Location: search.php?error=trip_not_found");
-        exit();
-    }
+$stmt = $pdo->prepare("SELECT * FROM review WHERE trip_id = :id");
+$stmt->execute([':id' => $tripId]);
+$reviews = $stmt->fetchAll();
+
+$stmt = $pdo->prepare("SELECT image FROM imagesTrip WHERE trip_id = :id");
+$stmt->execute([':id' => $tripId]);
+$images = $stmt->fetchAll();
+
+if (!$trip) {
+    header("Location: search.php?error=trip_not_found");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,11 +38,19 @@
     <link rel="stylesheet" href="styles.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bitcount:wght@100..900&family=DynaPuff:wght@400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bitcount:wght@100..900&family=DynaPuff:wght@400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <?php include_once 'header.php'; ?>
+    <main>
+        <section id="trip-info">
+            <div class=trip-image>
+                <img src="data:image/png;base64, <?php echo base64_encode($trip["frontImage"]) ?>" alt="frontImage">
+            </div>
 
              <div id="gallery" class="blue margin">
                 <?php foreach($images as $image){?>
@@ -48,7 +65,7 @@
                 <p><?php echo ($trip["price"]) ?></p>
             </div>
         </section>
-        <section id="reviews-trip">
+        <section id="reviews">
             <div id="review-input">
                 <?php if (isset($_SESSION['user_id'])) { ?>
                     <form action="add-review.php" class="rate" method="POST">
@@ -90,7 +107,7 @@
                 </form>
             <?php
                 } else { 
-                    echo "<h4 > Cannot add booking, user already has this booking </h4>";
+                    echo "<h4> Cannot add booking, user already has this booking </h4>";
                 }
             }else{
                 echo "<h4>need to be logged in to add booking(s)</h4>";
@@ -132,4 +149,5 @@
         </section>
     </main>
 </body>
+
 </html>

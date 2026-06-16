@@ -10,18 +10,18 @@ if (isset($_POST['email'], $_POST['password'], $_POST['confirm_password'], $_POS
 
     if ($password !== $confirmPassword) {
         $_SESSION['error'] = "Passwords do not match.";
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        header('Location: ' . (isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : '../index.php'));
         exit;
     }
 
     $stmt = $pdo->prepare("SELECT * FROM user WHERE email = :email");
     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->execute();
-    $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
+    $existingUser = $stmt->fetch();
 
     if ($existingUser) {
         $_SESSION['error'] = "Email is already registered.";
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        header('Location: ' . (isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : '../index.php'));
         exit;
     }
 
@@ -31,9 +31,11 @@ if (isset($_POST['email'], $_POST['password'], $_POST['confirm_password'], $_POS
     $stmt->bindParam(':password', $password, PDO::PARAM_STR);
     $stmt->execute();
 
+
+    header('Location: ' . (isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : '../index.php'));
 } else {
     $_SESSION['error'] = "Please fill in all fields.";
-    header('Location: ' . $_SERVER['HTTP_REFERER'] ?? '../index.php');
-    exit;
 }
+header('Location: ' . (isset($_SESSION['redirect_to']) ? $_SESSION['redirect_to'] : '../index.php'));
+exit;
 ?>
