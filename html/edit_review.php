@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 //checks if user is admin
@@ -36,7 +36,8 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<!--The HTML to show the comment and rating -->
+<!--The HTML to show/edit the comment and rating -->
+
 <body>
     <?php include_once 'header.php'; ?>
     <main>
@@ -44,7 +45,7 @@ if (isset($_GET['id'])) {
             <h1>Edit review</h1>
             <section id="trip-edit-info" class="blue margin">
                 <h2>Edit review information</h2>
-                <form action="admin/update_trip.php" method="POST">
+                <form action="edit_review_process.php" method="POST">
                     <input type="hidden" name="review_id" value="<?= $review['id'] ?>">
                     <div>
                         <label for="description">comment:</label>
@@ -53,6 +54,12 @@ if (isset($_GET['id'])) {
                     </div>
                     <div>
                         <label for="location">ratings:</label>
-                        <input type="text" id="rating" name="rating"
-                            value="<?= htmlspecialchars($review['rating']) ?>" required>
+                        <input type="text" id="rating" name="rating" value="<?= htmlspecialchars($review['rating']) ?>"
+                            required>
                     </div>
+                    <button type="submit">Update review</button>
+                </form>
+            </section>
+        </section>
+    </main>
+</body>

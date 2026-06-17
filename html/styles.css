@@ -667,6 +667,10 @@ footer a {
     grid-template-columns: 5fr 1fr;
 }
 
+#reviews-list{
+    
+}
+
 .info{
     display: flex;
     padding: 10px;
