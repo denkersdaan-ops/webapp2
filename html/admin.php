@@ -86,7 +86,7 @@ include_once 'dbConection.php';
             foreach($users as $user){
             ?>
             <div class="user_card blue">
-                <h3><?= $user['name']?></h3>
+                <h3><?= htmlspecialchars($user['name']) ?></h3>
                 <h4><?= $user['admin'] ? "Admin" : "User";?></h4>
             </div>
             <?php } ?>
@@ -102,8 +102,8 @@ include_once 'dbConection.php';
             foreach($bookings as $booking){
             ?>
             <div class="user_card blue">
-                <h3><?= $booking['title']?></h3>
-                <h4>Users booked: <?= $booking['user_count'] ?></h4>
+                <h3><?= htmlspecialchars($booking['title']) ?></h3>
+                <h4>Users booked: <?= htmlspecialchars($booking['user_count']) ?></h4>
             </div>
             <?php } ?>
         </section>
