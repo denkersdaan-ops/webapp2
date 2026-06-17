@@ -73,6 +73,7 @@ include_once 'dbConection.php';
                     <a href="edit_trip.php?id=<?= $trip['id']; ?>" class="admin-btn yellow">Edit</a>
                     <a href="admin/delete_trip_process.php?trip_id=<?= $trip['id']; ?>" class="admin-btn yellow" onclick="return confirm('Are you sure you want to delete this trip?');">Delete</a>
                 </div>
+            </div>
             <?php } ?>
         </section>
 
