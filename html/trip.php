@@ -54,15 +54,15 @@ if (!$trip) {
 
              <div id="gallery" class="blue margin">
                 <?php foreach($images as $image){?>
-                <img class=small-trip-image src="images/<?php echo $tripId ?>/<?php echo $image["image"] ?>" alt="sideImage">
+                <img class=small-trip-image src="images/<?php echo $tripId ?>/<?php echo htmlspecialchars($image["image"]) ?>" alt="sideImage">
                 <?php } ?>
             </div>
             
 
             <div class="info blue">
-                <p><?php echo ($trip["description"]) ?></p>
-                <p><?php echo ($trip["location"]) ?></p>
-                <p><?php echo ($trip["price"]) ?></p>
+                <p><?php echo htmlspecialchars($trip["description"]) ?></p>
+                <p><?php echo htmlspecialchars($trip["location"]) ?></p>
+                <p><?php echo htmlspecialchars($trip["price"]) ?></p>
             </div>
         </section>
         <section id="reviews">
@@ -71,7 +71,7 @@ if (!$trip) {
                     <form action="add-review.php" class="rate" method="POST">
                         <input type="hidden" name="trip_id" value="<?php echo $tripId ?>">
                         <input type="hidden" name="user_id"
-                            value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '' ?>">
+                            value="<?php echo isset($_SESSION['user_id']) ? htmlspecialchars($_SESSION['user_id']) : '' ?>">
                         <input type="text" name="review" placeholder="write review" required>
                         <input type="radio" id="star5" name="rate" value="5" />
                         <label for="star5" title="text">5 stars</label>
@@ -103,7 +103,7 @@ if (!$trip) {
                 <form action="add-booking.php" method="POST">
                     <input type="submit" value="add to bookings">
                     <input type="hidden" name="trip_id" value="<?php echo $tripId ?>">
-                    <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '' ?>" >
+                    <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user_id']) ? htmlspecialchars($_SESSION['user_id']) : '' ?>" >
                 </form>
             <?php
                 } else { 
@@ -126,7 +126,7 @@ if (!$trip) {
                 ?>
                 <div class="trip-commend blue">
                     <div class="commend-header">
-                        <h4><?php echo $user["name"] ?></h4>
+                        <h4><?php echo htmlspecialchars($user["name"]) ?></h4>
                         <div class="commend-stars">
                             <?php
                             for ($i = 1; $i <= 5; $i++) {
@@ -140,7 +140,7 @@ if (!$trip) {
                             ?>
                         </div>
                     </div>
-                    <p> <?php echo $review["comment"] ?></p>
+                    <p> <?php echo htmlspecialchars($review["comment"]) ?></p>
                 </div>
 
                 <?php
