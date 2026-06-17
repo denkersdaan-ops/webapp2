@@ -60,18 +60,20 @@ include_once 'dbConection.php';
             }
             ?>
 
-        <?php
-        $stmt = $pdo->query("SELECT * FROM trip");
-        $trips = $stmt->fetchAll();
-        foreach ($trips as $trip) { ?>
-            <div class="admin-trip blue margin">
-                <div>
-                    <h2><?= htmlspecialchars($trip['title']); ?></h2>
-                    <p><?= htmlspecialchars($trip['description']); ?></p>
-                </div>
-                <div class="admin-btns">
-                    <a href="edit_trip.php?id=<?= $trip['id']; ?>" class="admin-btn yellow">Edit</a>
-                    <a href="admin/delete_trip_process.php?trip_id=<?= $trip['id']; ?>" class="admin-btn yellow" onclick="return confirm('Are you sure you want to delete this trip?');">Delete</a>
+            <?php
+            $stmt = $pdo->query("SELECT * FROM trip");
+            $trips = $stmt->fetchAll();
+            foreach ($trips as $trip) { ?>
+                <div class="admin-trip blue">
+                    <div>
+                        <h2><?= htmlspecialchars($trip['title']); ?></h2>
+                        <p><?= htmlspecialchars($trip['description']); ?></p>
+                    </div>
+                    <div class="admin-btns">
+                        <a href="edit_trip.php?id=<?= $trip['id']; ?>" class="admin-btn yellow">Edit</a>
+                        <a href="admin/delete_trip_process.php?trip_id=<?= $trip['id']; ?>" class="admin-btn yellow"
+                            onclick="return confirm('Are you sure you want to delete this trip?');">Delete</a>
+                    </div>
                 </div>
             <?php } ?>
         </section>
@@ -82,12 +84,23 @@ include_once 'dbConection.php';
             $stmt = $pdo->query("SELECT * FROM user");
             $users = $stmt->fetchAll();
 
-            foreach($users as $user){
-            ?>
-            <div class="user_card blue">
-                <h3><?= $user['name']?></h3>
-                <h4><?= $user['admin'] ? "Admin" : "User";?></h4>
-            </div>
+            foreach ($users as $user) {
+                ?>
+                <div class="user_card blue">
+                    <h3><?= $user['name'] ?></h3>
+                    <h4><?= $user['admin'] ? "Admin" : "User"; ?></h4>
+                    <form action="admin/change_admin.php" method="POST">
+                        <input name="user_id" type="hidden" value="<?= $user['id'] ?>">
+                        <input name="is_admin" type="hidden" value="<?= $user['admin'] ?>">
+                        <?php if ($user['id'] != $_SESSION['user_id']) { ?>
+                            <button type="submit">Change <?= $user['admin'] ? "Admin" : "User"; ?> to
+                                <?= $user['admin'] ? "User" : "Admin"; ?></button>
+                        <?php } else { ?>
+                            <p>U can't change your own posistion</p>
+                            <?php
+                        } ?>
+                    </form>
+                </div>
             <?php } ?>
         </section>
 
@@ -98,12 +111,12 @@ include_once 'dbConection.php';
             $stmt = $pdo->query("SELECT trip.title, COUNT(booking.id) as user_count FROM booking left JOIN trip on booking.trip_id = trip.id GROUP BY booking.trip_id, trip.title ORDER BY booking.trip_id");
             $bookings = $stmt->fetchAll();
 
-            foreach($bookings as $booking){
-            ?>
-            <div class="user_card blue">
-                <h3><?= $booking['title']?></h3>
-                <h4>Users booked: <?= $booking['user_count'] ?></h4>
-            </div>
+            foreach ($bookings as $booking) {
+                ?>
+                <div class="user_card blue">
+                    <h3><?= $booking['title'] ?></h3>
+                    <h4>Users booked: <?= $booking['user_count'] ?></h4>
+                </div>
             <?php } ?>
         </section>
     </main>
