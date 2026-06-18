@@ -57,23 +57,25 @@ include_once 'dbConection.php';
             //Mixt de review database-sectie met user. Waardoor de username/gebruikersnaam ingevoegd kan worden. 
             //LEFT JOIN wordt gebruikt omdat er maar een klein deel van user (rechts) naar review (links) moet.
             $stmt = $pdo->query("SELECT review.id, review.rating, review.comment, user.name FROM review LEFT JOIN user on review.user_id=user.id");
-            $review = $stmt->fetchAll();
-            foreach ($review as $reviews) { ?>
+            $reviews = $stmt->fetchAll();
+            foreach ($reviews as $review) { ?>
 
                 <div class="admin-trip blue margin">
                     <div>
-                        <h2><?= htmlspecialchars($reviews['name']); ?></h2>
-                        <p><?= htmlspecialchars($reviews['comment']); ?></p>
+                        <h2><?= htmlspecialchars($review['name']); ?></h2>
+                        <p><?= htmlspecialchars($review['comment']); ?></p>
                     </div>
                     <div class="admin-btns">
-                        <a href="edit_review.php?id=<?= $reviews['id']; ?>" class="admin-btn yellow">Edit</a>
-                        <a href="admin/delete_review_process.php?review_id=<?= $reviews['id']; ?>" class="admin-btn yellow"
-                            onclick="return confirm('Are you sure you want to delete this review?');">Delete</a>
+                        <a href="edit_review.php?id=<?= $review['id']; ?>" class="admin-btn yellow">Edit</a>
+                        <form action="admin/delete_review_process.php" method="post">
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($review['id']) ?>">
+                            <button type="submit" class="admin-btn yellow">delete</button>
+                        </form>
                     </div>
                 </div>
             <?php } ?>
         </section>
 
-         </main>
+    </main>
 
 </body>
