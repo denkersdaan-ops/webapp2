@@ -14,9 +14,9 @@ if (isset($_GET['id'])) {
     $stmt = $pdo->prepare("SELECT * FROM review WHERE id = :id");
     $stmt->bindParam(':id', $reviewId, PDO::PARAM_INT);
     $stmt->execute();
-    $trip = $stmt->fetch();
+    $review = $stmt->fetch();
 
-    if (!$trip) {
+    if (!$review) {
         header('Location: admin-reviews.php');
         exit;
     }
@@ -54,8 +54,8 @@ if (isset($_GET['id'])) {
                     </div>
                     <div>
                         <label for="location">ratings:</label>
-                        <input type="text" id="rating" name="rating" value="<?= htmlspecialchars($review['rating']) ?>"
-                            required>
+                        <input type="number" id="rating" name="rating"
+                            value="<?= htmlspecialchars($review['rating']) ?>" required min="1" max="5">
                     </div>
                     <button type="submit">Update review</button>
                 </form>
