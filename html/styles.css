@@ -26,7 +26,7 @@ body {
 }
 
 .trip-image img {
-    width: clamp(200px,80vw,850px);
+    width: clamp(200px, 80vw, 850px);
     height: auto;
     object-fit: cover;
 }
@@ -58,8 +58,8 @@ figure {
 }
 
 .small-trip-image {
-    width: clamp(100px,40vw,475px);
-    border-radius: 20px;   
+    width: clamp(100px, 40vw, 475px);
+    border-radius: 20px;
     height: auto;
     object-fit: cover;
 }
@@ -293,18 +293,51 @@ footer a {
 }
 
 .search-result-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 10fr 1fr;
     align-items: center;
     gap: 10px;
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
+    text-decoration: none;
+}
+
+.search-result-item a{
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.add-btn {
+    background-color: #ff6969;
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    font-size: 2rem;
 }
 
 .search-result-item:hover {
     transform: scale(1.015);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: ease 0.3s;
+}
+
+#search-top{
+    display: grid;
+    grid-template-columns: 12fr 1fr 1fr;
+}
+
+#search-top button{
+    margin: 10px;
+    border-radius: 20px;
+    font-size: 1.2rem;
 }
 
 .search-result-item img,
@@ -564,14 +597,11 @@ footer a {
     text-decoration: none;
 }
 
-#cancel-btn{
+#cancel-btn {
     background-color: #ff6969;
     padding: 10px;
     border-radius: 20px;
     font-size: 1.5rem;
-}
-
-    text-decoration: none;
 }
 
 .booking-item:hover {
@@ -671,24 +701,20 @@ footer a {
 }
 
 .commend-header,
-.commend-stars{
+.commend-stars {
     display: flex;
 }
 
-.selected-star{
+.selected-star {
     color: #c59b08;
 }
 
-#reviews{
+#reviews {
     display: grid;
     grid-template-columns: 5fr 1fr;
 }
 
-#reviews-list{
-    
-}
-
-.info{
+.info {
     display: flex;
     padding: 10px;
     padding-top: 30px;
@@ -696,43 +722,45 @@ footer a {
     gap: 50px;
 }
 
-.booking-btn{
+.booking-btn {
     margin: 10px;
 }
 
-#bookingen{
+#bookingen {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
 
-#mail{
+#mail {
     margin: 20px;
     border-radius: 40px;
     padding: 20px;
-    min-height: calc(100vh - 210px); /* 110px header 10px header padding 20px margin main 20px padding mail*/
+    min-height: calc(100vh - 210px);
+    /* 110px header 10px header padding 20px margin main 20px padding mail*/
 }
 
-#mail form{
+#mail form {
     display: grid;
     grid-template-rows: 64px 64px calc(100vh - 428px);
     gap: 20px;
 }
+
 #mail form button,
 #mail form input,
-#mail form textarea{
+#mail form textarea {
     font-size: 1.2rem;
     padding: 10px;
     border-radius: 10px;
 }
 
-#mail form textarea{
+#mail form textarea {
     resize: none;
 }
 
-#mail form button{
-    width: clamp(100px,20%,200px);
+#mail form button {
+    width: clamp(100px, 20%, 200px);
 }
 
 .admin-trip {
@@ -834,3 +862,6 @@ footer a {
     transition: ease 0.5s;
 }
 
+.hidden-result{
+    display: none;
+}
