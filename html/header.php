@@ -17,6 +17,13 @@ $_SESSION['redirect_to'] = $_SERVER['REQUEST_URI'];
                     echo '<li><a href="admin.php" class="yellow">Admin</a></li>';
                 }
             ?>
+             <ul id="main-buttons">
+            <?php
+                if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) {
+                    echo '<li><a href="admin-reviews.php" class="yellow">reviews</a></li>';
+                } 
+            ?>
+            </ul>
             <li><a href="aboutUs.php" class="yellow">About</a></li>
             <?php
             if (isset($_SESSION['user_id'])) {

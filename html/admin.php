@@ -75,6 +75,7 @@ include_once 'dbConection.php';
                             onclick="return confirm('Are you sure you want to delete this trip?');">Delete</a>
                     </div>
                 </div>
+            </div>
             <?php } ?>
         </section>
 
@@ -111,12 +112,12 @@ include_once 'dbConection.php';
             $stmt = $pdo->query("SELECT trip.title, COUNT(booking.id) as user_count FROM booking left JOIN trip on booking.trip_id = trip.id GROUP BY booking.trip_id, trip.title ORDER BY booking.trip_id");
             $bookings = $stmt->fetchAll();
 
-            foreach ($bookings as $booking) {
-                ?>
-                <div class="user_card blue">
-                    <h3><?= $booking['title'] ?></h3>
-                    <h4>Users booked: <?= $booking['user_count'] ?></h4>
-                </div>
+            foreach($bookings as $booking){
+            ?>
+            <div class="user_card blue">
+                <h3><?= htmlspecialchars($booking['title']) ?></h3>
+                <h4>Users booked: <?= htmlspecialchars($booking['user_count']) ?></h4>
+            </div>
             <?php } ?>
         </section>
     </main>
