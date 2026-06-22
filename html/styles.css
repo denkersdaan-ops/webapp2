@@ -160,7 +160,8 @@ main {
 #about-us-image img {
     padding: 20px;
     height: calc(100% - 40px);
-    object-fit: fill;
+    min-width: 400px;
+    object-fit: cover;
     overflow: hidden;
     width: 25vw;
     /* it makes the image take up the full height of the aside minus the padding, and maintains the aspect ratio */
@@ -329,12 +330,12 @@ footer a {
     transition: ease 0.3s;
 }
 
-#search-top{
+#search-top {
     display: grid;
     grid-template-columns: 12fr 1fr 1fr;
 }
 
-#search-top button{
+#search-top button {
     margin: 10px;
     border-radius: 20px;
     font-size: 1.2rem;
@@ -862,6 +863,6 @@ footer a {
     transition: ease 0.5s;
 }
 
-.hidden-result{
+.hidden-result {
     display: none;
 }

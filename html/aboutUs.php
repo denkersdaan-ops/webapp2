@@ -68,7 +68,7 @@ session_start();
                 </div>
             </section>
             <aside id="about-us-image" class="margin yellow">
-                <img src="images/scroll-images/afbeelding3.png" alt="">
+                <img src="images/flight-image.jpg" alt="">
             </aside>
         </section>
     </main>
