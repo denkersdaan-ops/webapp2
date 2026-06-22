@@ -31,13 +31,30 @@ body {
     object-fit: cover;
 }
 
-#gallery{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;    
-    border-radius: 20px;
-    padding: 10px;
-    gap:10px;
+.gallery {
+  display: flex;
+}
+
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 0.5em;
+  list-style: none;
+}
+
+.thumbnail {
+  width: calc((330px - 1.5em) / 4);
+  border-radius: 4px;
+}
+
+figure {
+  position: relative;
+}
+
+.main-image {
+  border-radius: 6px;
+  max-width: 20rem;
 }
 
 .small-trip-image {
