@@ -143,7 +143,8 @@ main {
 #about-us-image img {
     padding: 20px;
     height: calc(100% - 40px);
-    object-fit: fill;
+    min-width: 400px;
+    object-fit: cover;
     overflow: hidden;
     width: 25vw;
     /* it makes the image take up the full height of the aside minus the padding, and maintains the aspect ratio */
@@ -288,6 +289,17 @@ footer a {
     transform: scale(1.015);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: ease 0.3s;
+}
+
+#search-top {
+    display: grid;
+    grid-template-columns: 12fr 1fr 1fr;
+}
+
+#search-top button {
+    margin: 10px;
+    border-radius: 20px;
+    font-size: 1.2rem;
 }
 
 .search-result-item img,
@@ -703,8 +715,6 @@ footer a {
     width: clamp(100px,20%,200px);
 }
 
-}
-
 .admin-trip {
     padding: 20px;
     border-radius: 20px;
@@ -802,4 +812,8 @@ footer a {
 #links li a:hover {
     font-size: 2.2rem;
     transition: ease 0.5s;
+}
+
+.hidden-result {
+    display: none;
 }
