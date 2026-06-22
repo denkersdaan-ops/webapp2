@@ -73,6 +73,7 @@ include_once 'dbConection.php';
                     <a href="edit_trip.php?id=<?= $trip['id']; ?>" class="admin-btn yellow">Edit</a>
                     <a href="admin/delete_trip_process.php?trip_id=<?= $trip['id']; ?>" class="admin-btn yellow" onclick="return confirm('Are you sure you want to delete this trip?');">Delete</a>
                 </div>
+            </div>
             <?php } ?>
         </section>
 
@@ -85,7 +86,7 @@ include_once 'dbConection.php';
             foreach($users as $user){
             ?>
             <div class="user_card blue">
-                <h3><?= $user['name']?></h3>
+                <h3><?= htmlspecialchars($user['name']) ?></h3>
                 <h4><?= $user['admin'] ? "Admin" : "User";?></h4>
             </div>
             <?php } ?>
@@ -101,8 +102,8 @@ include_once 'dbConection.php';
             foreach($bookings as $booking){
             ?>
             <div class="user_card blue">
-                <h3><?= $booking['title']?></h3>
-                <h4>Users booked: <?= $booking['user_count'] ?></h4>
+                <h3><?= htmlspecialchars($booking['title']) ?></h3>
+                <h4>Users booked: <?= htmlspecialchars($booking['user_count']) ?></h4>
             </div>
             <?php } ?>
         </section>

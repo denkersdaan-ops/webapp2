@@ -70,6 +70,11 @@ $user = $stmt->fetch();
                         </p>
                         <p><?= htmlspecialchars($trip['description']) ?></p>
                     </div>
+
+                    <form action="remove-booking.php" method="POST">
+                        <input type="hidden" name="booking-id" value="<?= $booking['id']?>">
+                        <button id="cancel-btn">Cancel</button>
+                    </form>
                 </a>
                 <?php
             }

@@ -52,17 +52,55 @@ if (!$trip) {
                 <img src="data:image/png;base64, <?php echo base64_encode($trip["frontImage"]) ?>" alt="frontImage">
             </div>
 
-             <div id="gallery" class="blue margin">
-                <?php foreach($images as $image){?>
-                <img class=small-trip-image src="images/<?php echo $tripId ?>/<?php echo $image["image"] ?>" alt="sideImage">
-                <?php } ?>
+            <div class="gallery">
+                <figure>
+                    <img class="main-image" src="images/<?php echo $tripId ?>/<?php $image = $images[0];
+                       echo htmlspecialchars($image['image']) ?>" alt="sideImage">
+                    <figcaption class="image-heading"></figcaption>
+                </figure>
+
+                <ul class="small-trip-image">
+                    <?php
+                    foreach ($images as $image) { ?>
+                        <li>
+                            <a href="#">
+                                <img class="thumbnail"
+                                    src="images/<?php echo $tripId ?>/<?php echo htmlspecialchars($image["image"]) ?>"
+                                    alt="sideImage">
+                            </a>
+                        </li>
+                    <?php }
+                    ?>
+                </ul>
             </div>
-            
+            <script>
+                const mainImage = document.querySelector("figure img");
+                const thumbnailHandler = (event) => {
+                    const clickTarget = event.target;
+                    const displayNewImage = () => {
+                        mainImage.src = clickTarget.src;
+                    };
+
+                    if (clickTarget.classList.contains("thumbnail")) {
+                        if (!document.startViewTransition) {
+                            displayNewImage();
+                            return;
+                        }
+
+                        const transition = document.startViewTransition(() => displayNewImage());
+                    }
+                };
+                window.onload = function () {
+                    const thumbnails = document.getElementsByClassName("thumbnail");
+
+                    Array.from(thumbnails).forEach((element) => element.addEventListener("click", thumbnailHandler, false));
+                }
+            </script>
 
             <div class="info blue">
-                <p><?php echo ($trip["description"]) ?></p>
-                <p><?php echo ($trip["location"]) ?></p>
-                <p><?php echo ($trip["price"]) ?></p>
+                <p><?php echo htmlspecialchars($trip["description"]) ?></p>
+                <p><?php echo htmlspecialchars($trip["location"]) ?></p>
+                <p><?php echo htmlspecialchars($trip["price"]) ?></p>
             </div>
         </section>
         <section id="reviews">
@@ -71,7 +109,7 @@ if (!$trip) {
                     <form action="add-review.php" class="rate" method="POST">
                         <input type="hidden" name="trip_id" value="<?php echo $tripId ?>">
                         <input type="hidden" name="user_id"
-                            value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '' ?>">
+                            value="<?php echo isset($_SESSION['user_id']) ? htmlspecialchars($_SESSION['user_id']) : '' ?>">
                         <input type="text" name="review" placeholder="write review" required>
                         <input type="radio" id="star5" name="rate" value="5" />
                         <label for="star5" title="text">5 stars</label>
@@ -90,29 +128,30 @@ if (!$trip) {
                 <?php } ?>
 
             </div>
-            <?php 
+            <?php
             if (isset($_SESSION['user_id'])) {
-                $stmt=$pdo->prepare( "SELECT user_id FROM booking WHERE trip_id = :trip_id AND user_id = :user_id");
+                $stmt = $pdo->prepare("SELECT user_id FROM booking WHERE trip_id = :trip_id AND user_id = :user_id");
                 $stmt->bindparam(":trip_id", $tripId);
                 $stmt->bindparam(":user_id", $_SESSION["user_id"]);
                 $stmt->execute();
                 $user_id = $stmt->fetchColumn();
 
                 if ($user_id != $_SESSION["user_id"]) {
-                ?>
-                <form action="add-booking.php" method="POST">
-                    <input type="submit" value="add to bookings">
-                    <input type="hidden" name="trip_id" value="<?php echo $tripId ?>">
-                    <input type="hidden" name="user_id" value="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : '' ?>" >
-                </form>
-            <?php
-                } else { 
+                    ?>
+                    <form action="add-booking.php" method="POST">
+                        <input type="submit" value="add to bookings">
+                        <input type="hidden" name="trip_id" value="<?php echo $tripId ?>">
+                        <input type="hidden" name="user_id"
+                            value="<?php echo isset($_SESSION['user_id']) ? htmlspecialchars($_SESSION['user_id']) : '' ?>">
+                    </form>
+                    <?php
+                } else {
                     echo "<h4> Cannot add booking, user already has this booking </h4>";
                 }
-            }else{
+            } else {
                 echo "<h4>need to be logged in to add booking(s)</h4>";
             }
-                ?>
+            ?>
 
 
             <?php
@@ -126,7 +165,7 @@ if (!$trip) {
                 ?>
                 <div class="trip-commend blue">
                     <div class="commend-header">
-                        <h4><?php echo $user["name"] ?></h4>
+                        <h4><?php echo htmlspecialchars($user["name"]) ?></h4>
                         <div class="commend-stars">
                             <?php
                             for ($i = 1; $i <= 5; $i++) {
@@ -140,7 +179,7 @@ if (!$trip) {
                             ?>
                         </div>
                     </div>
-                    <p> <?php echo $review["comment"] ?></p>
+                    <p> <?php echo htmlspecialchars($review["comment"]) ?></p>
                 </div>
 
                 <?php
