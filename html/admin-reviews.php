@@ -35,16 +35,18 @@ include_once 'dbConection.php';
                 ?>
                 <form id="add_form" class="blue" action="admin/add_review_process.php" method="POST"
                     enctype="multipart/form-data">
-                    <input type="text" name="review_description" placeholder="comment" required>
+                    <input type="text" name="review_comment" placeholder="comment" required>
                     <input type="text" name="review_location" placeholder="Location" required>
-                     <input type="number" id="rating" name="rating"
+                     <input type="number" id="review_rating" name="rating"
                             value="<?= htmlspecialchars($review['rating']) ?>" required min="1" max="5">
                     <input type="submit" value="Add Trip" class="yellow">
+                    <input type="number" id="trip_id" name= "trip_id">
+                    <input type="date" id="post_date" name="post_date">
                 </form>
                 <?php
             } else {
                 ?>
-                <form action="add_review_process.php" method="POST">
+                <form action="admin-reviews.php" method="GET">
                     <input type="hidden" name="add_review" value="true">
                     <input type="submit" value="Add Review" class="yellow">
                 </form>
