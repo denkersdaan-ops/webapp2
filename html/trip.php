@@ -51,7 +51,7 @@ if (!$trip) {
             <div class=trip-image>
                 <img src="data:image/png;base64, <?php echo base64_encode($trip["frontImage"]) ?>" alt="frontImage">
             </div>
-
+            <?php if(!empty($images)){ ?>
             <div class="gallery">
                 <figure>
                     <img class="main-image" src="images/<?php echo $tripId ?>/<?php $image = $images[0];
@@ -96,6 +96,7 @@ if (!$trip) {
                     Array.from(thumbnails).forEach((element) => element.addEventListener("click", thumbnailHandler, false));
                 }
             </script>
+            <?php } ?>
 
             <div class="info blue">
                 <p><?php echo htmlspecialchars($trip["description"]) ?></p>
